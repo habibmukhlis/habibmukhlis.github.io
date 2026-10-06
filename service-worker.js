@@ -1,4 +1,4 @@
-const CACHE = 'hr-portfolio-v13-ecosystem';
+const CACHE = 'hr-portfolio-v14-floating-assistant';
 const ASSETS = [
   './',
   './index.html',

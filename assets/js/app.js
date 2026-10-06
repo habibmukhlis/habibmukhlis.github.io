@@ -106,6 +106,124 @@ $$('.filter-btn').forEach((btn) => {
 // Year
 $('#year').textContent = String(new Date().getFullYear());
 
+// ---- Floating AI Assistant Widget ----
+function initChatbotWidget() {
+  if (document.getElementById('alhaq-chatbot-launcher')) return;
+
+  const btn = document.createElement('button');
+  btn.id = 'alhaq-chatbot-launcher';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Open Al-Haq Assistant');
+  btn.setAttribute('aria-expanded', 'false');
+  const ICON_CHAT = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>';
+  const ICON_CLOSE = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  btn.innerHTML = ICON_CHAT;
+
+  const tip = document.createElement('div');
+  tip.id = 'alhaq-chatbot-tip';
+  tip.textContent = 'Ask the Al-Haq Assistant';
+
+  const panel = document.createElement('div');
+  panel.id = 'alhaq-chatbot-panel';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'Al-Haq AI Assistant');
+  panel.innerHTML = `
+    <div id="alhaq-chatbot-header">
+      <div class="alhaq-avatar" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="alhaq-meta">
+        <span class="alhaq-title">Al-Haq Assistant</span>
+        <span class="alhaq-sub">Online &middot; AI Assistant</span>
+      </div>
+      <div class="alhaq-actions">
+        <button type="button" id="alhaq-chatbot-expand" aria-label="Expand or shrink chatbot" title="Expand">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
+        <button type="button" id="alhaq-chatbot-close" aria-label="Close chatbot" title="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="alhaq-chatbot-body">
+      <iframe
+        id="alhaq-chat-iframe"
+        data-src="https://alhaq-hf-alhaq-website-chatbot.hf.space/?context=portfolio"
+        src="about:blank"
+        title="Al-Haq AI Assistant"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        allow="clipboard-write"></iframe>
+    </div>
+    <div id="alhaq-chatbot-footer">
+      <span>Developed by Al-Haq Studio</span>
+      <a href="#contact">Need direct contact?</a>
+    </div>
+  `;
+
+  document.body.appendChild(btn);
+  document.body.appendChild(tip);
+  document.body.appendChild(panel);
+
+  const expandBtn = panel.querySelector('#alhaq-chatbot-expand');
+  const closeBtn = panel.querySelector('#alhaq-chatbot-close');
+  const iframe = panel.querySelector('#alhaq-chat-iframe');
+
+  function openAssistant() {
+    panel.classList.add('open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close Al-Haq Assistant');
+    btn.innerHTML = ICON_CLOSE;
+    if (iframe.getAttribute('src') === 'about:blank') {
+      iframe.setAttribute('src', iframe.getAttribute('data-src'));
+    }
+  }
+
+  function closeAssistant() {
+    panel.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open Al-Haq Assistant');
+    btn.innerHTML = ICON_CHAT;
+  }
+
+  btn.addEventListener('click', () => {
+    if (panel.classList.contains('open')) closeAssistant();
+    else openAssistant();
+  });
+
+  closeBtn?.addEventListener('click', closeAssistant);
+
+  expandBtn?.addEventListener('click', () => {
+    panel.classList.toggle('expanded');
+    expandBtn.setAttribute('title', panel.classList.contains('expanded') ? 'Shrink' : 'Expand');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('open')) closeAssistant();
+  });
+
+  // Wire up nav links and in-page buttons
+  $$('a[href="#assistant"]').forEach((a) => {
+    a.addEventListener('click', () => {
+      openAssistant();
+    });
+  });
+
+  const promptBtn = document.getElementById('openAssistantPromptBtn');
+  promptBtn?.addEventListener('click', openAssistant);
+
+  window.openAlhaqAssistant = openAssistant;
+  window.closeAlhaqAssistant = closeAssistant;
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initChatbotWidget);
+} else {
+  initChatbotWidget();
+}
+
 // ---- i18n ----
 const dict = {
   en: {
@@ -153,9 +271,9 @@ const dict = {
       outro: 'All codebases balance rigorous mathematical architecture (NIST P-256 ECDSA offline verification, PostgreSQL RLS security) with warm, distraction-free user experiences.'
     },
     ventures: {
-      eyebrow: 'Organizational Matrix',
-      title: 'The Twin Pillars of the Ecosystem',
-      lead: 'Bridging commercial cyber-security software engineering with independent community-focused digital welfare.',
+      eyebrow: 'Two Core Pillars',
+      title: 'Commercial Studio & Community Mission',
+      lead: 'Bridging professional software engineering with independent community-focused digital welfare.',
       studioSubtitle: 'Commercial Software Engineering • UK Sole Trader',
       studioDesc: 'The commercial engineering and development studio. Engineers production Android applications, no-root local firewalls, 3D spatial simulations, and zero-knowledge cryptographic systems. Authors, maintains, and licenses sovereign software.',
       initiativeSubtitle: 'Community Digital Welfare • Personal Mission',
@@ -222,7 +340,7 @@ const dict = {
     },
     assistant: {
       title: 'Ask the Al-Haq Assistant',
-      desc: 'The AI assistant answers questions regarding this portfolio, products (AmniGuard, AmniShield, Platen, AmniSpace), Al-Haq Studio services, and the Al-Haq Initiative library.'
+      desc: 'The conversational assistant is indexed over this portfolio and products to answer questions regarding architecture, features, and research. Available anytime via the floating button.'
     },
     btn: {
       demo: 'Demo',
@@ -252,7 +370,7 @@ const dict = {
       availabilityText: 'Open to full-time architecture roles, contract engineering, and bespoke freelance builds.',
       location: 'Location',
       locationText: 'United Kingdom (Remote Worldwide)',
-      elsewhere: 'Ecosystem Links'
+      elsewhere: 'Key Websites & Profiles'
     },
     footer: {
       rights: 'All rights reserved.',
@@ -304,9 +422,9 @@ const dict = {
       outro: 'ټول کوډبیسونه د پرمختللي ریاضیاتي جوړښت (NIST P-256 ECDSA آفلاین تصدیق، د PostgreSQL RLS امنیت) سره یوځای اسانه او له ګډوډۍ پرته کاروونکي تجربه برابروي.'
     },
     ventures: {
-      eyebrow: 'سازماني چوکاټ',
-      title: 'د ایکوسیستم دوه اصلي ستنې',
-      lead: 'د سوداګریز سایبري امنیت سافټویر جوړونې او خپلواکې ټولنیزې ډیجیټل هوساینې ترمنځ پله جوړول.',
+      eyebrow: 'دوه اصلي ستنې',
+      title: 'سوداګریز سټوډیو او ټولنیز ماموریت',
+      lead: 'د مسلکي سافټویر جوړونې او خپلواکې ټولنیزې ډیجیټل هوساینې ترمنځ پله جوړول.',
       studioSubtitle: 'سوداګریز سافټویر انجنیري • UK Sole Trader',
       studioDesc: 'سوداګریز انجنیري او پرمختیایي سټوډیو. د لوړ کیفیت انډرایډ غوښتنلیکونه، بې روټه محلي فایروالونه، ۳D فضايي سمولیشنونه او د صفر پوهې کریپټوګرافیک سیسټمونه جوړوي.',
       initiativeSubtitle: 'ټولنیزه ډیجیټل هوساینه • شخصي ماموریت',
@@ -403,7 +521,7 @@ const dict = {
       availabilityText: 'د تمام وخت معماري رولونو، قراردادونو او ځانګړو پروژو لپاره چمتو.',
       location: 'ځای',
       locationText: 'برتانیه (لرې، نړيوال)',
-      elsewhere: 'ایکوسیستم لینکونه'
+      elsewhere: 'مهم وېبپاڼې او پروفایلونه'
     },
     footer: {
       rights: 'ټولې حقوق خوندي دي.',
@@ -455,9 +573,9 @@ const dict = {
       outro: 'تمام کدبیس‌ها توازن دقیقی میان معماری ریاضیاتی (تأیید آفلاین NIST P-256 ECDSA و امنیت PostgreSQL RLS) و تجربه کاربری آرام برقرار می‌کنند.'
     },
     ventures: {
-      eyebrow: 'ماتریس سازمانی',
-      title: 'دو رکن بنیادین اکوسیستم',
-      lead: 'پیوند مهندسی امنیت سایبری تجاری با خدمات رفاه دیجیتال مستقل برای جامعه.',
+      eyebrow: 'دو رکن بنیادین',
+      title: 'استودیوی تجاری و ماموریت جامعه',
+      lead: 'پیوند مهندسی نرم‌افزار حرفه‌ای با خدمات رفاه دیجیتال مستقل برای جامعه.',
       studioSubtitle: 'مهندسی نرم‌افزار تجاری • UK Sole Trader',
       studioDesc: 'استودیوی مهندسی و توسعه تجاری. توسعه اپلیکیشن‌های اندروید، فایروال‌های محلی بدون روت، شبیه‌سازی‌های سه‌بعدی و سیستم‌های رمزنگاری با دانش صفر.',
       initiativeSubtitle: 'رفاه دیجیتال جامعه • ماموریت فردی',
@@ -554,7 +672,7 @@ const dict = {
       availabilityText: 'آماده برای نقش‌های معماری تمام‌وقت، قراردادهای مهندسی و پروژه‌های اختصاصی.',
       location: 'موقعیت',
       locationText: 'بریتانیا (دورکاری، جهانی)',
-      elsewhere: 'پیوندهای اکوسیستم'
+      elsewhere: 'وب‌سایت‌ها و نمایه‌ها'
     },
     footer: {
       rights: 'کلیه حقوق محفوظ است.',
