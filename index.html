@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Habib Mukhlis (Habibur Rahman) · Portfolio" />
-  <meta name="theme-color" content="#0ea5e9" id="theme-color-meta" />
+  <meta name="description" content="Habib Mukhlis (Habibur Rahman) · Founder of Al-Haq Studio & Al-Haq Initiative · Systems Architect & Software Engineer" />
+  <meta name="theme-color" content="#0A2540" id="theme-color-meta" />
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; img-src 'self' data: https://cdn.buymeacoffee.com https://img.buymeacoffee.com https://ko-fi.com; script-src 'self' https://cdnjs.buymeacoffee.com https://cdn.buymeacoffee.com 'unsafe-inline'; frame-src https://ko-fi.com https://buymeacoffee.com https://alhaq-hf-alhaq-website-chatbot.hf.space; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; upgrade-insecure-requests" />
   <meta name="referrer" content="no-referrer" />
@@ -15,21 +15,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..800;1,8..60,400..700&family=Inter:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap"
     rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <title>Habib Mukhlis (Habibur Rahman) · Portfolio</title>
+  <title>Habib Mukhlis (Habibur Rahman) · Systems Architect &amp; Software Engineer</title>
 </head>
 
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+  <!-- Header Navigation -->
   <header class="app-bar" data-elevated>
     <div class="container app-bar__inner">
-      <a href="#home" class="brand">
-        <span class="brand__logo" aria-hidden="true">HRM</span>
-        <span class="brand__text">Habib Mukhlis (Habibur Rahman)</span>
+      <a href="#home" class="brand" aria-label="Habib Mukhlis Homepage">
+        <span class="brand__logo" aria-hidden="true">HM</span>
+        <span class="brand__text">Habib Mukhlis</span>
       </a>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" aria-label="Primary Navigation">
         <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" id="navToggle" title="Open menu">
           <span class="sr-only">Toggle navigation</span>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -38,22 +42,24 @@
         </button>
         <ul class="nav__menu" id="nav-menu">
           <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#ventures" data-i18n="nav.ventures">Ventures</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Products</a></li>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#architecture" data-i18n="nav.architecture">Architecture</a></li>
           <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
-          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
-          <li><a href="#assistant">Assistant</a></li>
-          <li><a href="#sponsor">Sponsor</a></li>
+          <li><a href="#assistant" data-i18n="nav.assistant">Assistant</a></li>
+          <li><a href="#sponsor" data-i18n="nav.sponsor">Sponsor</a></li>
           <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
           <li class="lang-picker">
             <label class="sr-only" for="langSelect">Language</label>
-            <select id="langSelect" aria-label="Language">
+            <select id="langSelect" aria-label="Select Language">
               <option value="en">EN</option>
               <option value="ps">پښتو</option>
               <option value="fa">دری</option>
             </select>
           </li>
           <li class="theme-toggle">
-            <button id="themeToggle" class="icon-btn" title="Toggle theme">
-              <span class="sr-only">Toggle theme</span>
+            <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-label="Toggle Color Theme">
               <svg class="icon-sun" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5 5 3.5 3.5M20.5 20.5 19 19M19 5l1.5-1.5M3.5 20.5 5 19"
                   stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
@@ -71,72 +77,94 @@
   </header>
 
   <main id="main">
-    <!-- Hero -->
-    <section id="home" class="section hero" aria-label="Intro">
+    <!-- Hero Section -->
+    <section id="home" class="section hero" aria-label="Introduction">
       <div class="container hero__inner">
         <div class="hero__content">
-          <p class="eyebrow" data-i18n="hero.hello">Hello, I’m</p>
-          <h1 class="display">Habib Mukhlis (Habibur Rahman)</h1>
-          <p class="lead" data-i18n="hero.lead">Founder of Al-Haq Studio and Al-Haq Initiative. Crafting native Android
-            applications, privacy-first tools, desktop utilities, and browser extensions.</p>
+          <p class="eyebrow" data-i18n="hero.hello">Founder &amp; Principal Systems Architect</p>
+          <h1 class="display">Habib Mukhlis <span class="muted" style="font-size: 0.6em; display: block; margin-top: 0.25rem;">(Habibur Rahman)</span></h1>
+          <p class="lead" data-i18n="hero.lead">
+            Lead Architect behind <strong>Al-Haq Studio</strong> and the <strong>Al-Haq Initiative</strong>. Engineering sovereign on-device privacy guardians, photorealistic 3D spatial simulations, compiler toolchains, and community Islamic digital welfare tools.
+          </p>
           <div class="actions">
-            <a class="btn btn--primary" href="#projects" data-i18n="hero.ctaProjects">View Projects</a>
-            <a class="btn btn--tonal" href="#contact" data-i18n="hero.ctaContact">Contact Me</a>
-            <a class="btn" href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer"
-              data-i18n="hero.ctaFiverr">Hire me on Fiverr</a>
-            <a class="btn btn--primary email-link" href="#" data-i18n="hero.ctaEmail">Email me</a>
+            <a class="btn btn--primary" href="#projects" data-i18n="hero.ctaProjects">Explore Products</a>
+            <a class="btn btn--tonal" href="#services" data-i18n="hero.ctaServices">Client Solutions</a>
+            <a class="btn" href="#contact" data-i18n="hero.ctaContact">Contact Me</a>
+            <a class="btn email-link" href="#" data-i18n="hero.ctaEmail">Direct Email</a>
           </div>
-          <div class="quick-meta">
-            <span class="chip" data-i18n="hero.meta1">Android, Web, Desktop, Extensions</span>
-            <span class="chip" data-i18n="hero.meta2">AI-assisted</span>
+
+          <!-- KPI Metrics Ticker -->
+          <div class="kpi-bar" data-reveal>
+            <div class="kpi-item">
+              <span class="kpi-number">15+</span>
+              <span class="kpi-label" data-i18n="kpi.projects">Projects &amp; Tools</span>
+            </div>
+            <div class="kpi-item">
+              <span class="kpi-number">100%</span>
+              <span class="kpi-label" data-i18n="kpi.privacy">On-Device Privacy</span>
+            </div>
+            <div class="kpi-item">
+              <span class="kpi-number">3</span>
+              <span class="kpi-label" data-i18n="kpi.platforms">Primary OS Targets</span>
+            </div>
+            <div class="kpi-item">
+              <span class="kpi-number">P-256</span>
+              <span class="kpi-label" data-i18n="kpi.crypto">NIST Cryptography</span>
+            </div>
           </div>
         </div>
+
         <div class="hero__art">
           <figure class="card glass" data-elevated>
-            <img id="accentSource" src="assets/img/cover-gradient.svg" alt="Colorful abstract gradient" />
+            <img id="accentSource" src="assets/img/cover-gradient.svg" alt="Abstract gradient graphic representation" />
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- About -->
+    <!-- About Section -->
     <section id="about" class="section">
       <div class="container grid grid-2">
         <div class="card" data-reveal>
-          <h2 data-i18n="section.about.title">About</h2>
-          <p data-i18n="about.intro">I am the founder of Al-Haq Studio and Al-Haq Initiative. I specialise in building
-            local-first, privacy-respecting software. I create:</p>
+          <h2 data-i18n="section.about.title">About &amp; Core Philosophy</h2>
+          <p data-i18n="about.intro">
+            I am an independent systems engineer, software architect, and historical researcher. I operate two complementary initiatives designed to advance digital sovereignty, ethical wellness, and open community tools:
+          </p>
           <ul class="list list--spaced">
-            <li data-i18n="about.li1">Native Android applications and utility suites (Kotlin, Java)</li>
-            <li data-i18n="about.li2">Responsive modern websites and static web applications</li>
-            <li data-i18n="about.li3">Professional cross-browser extensions</li>
+            <li data-i18n="about.li1"><strong>Local-First Systems:</strong> On-device network packet inspection, local vision AI, and Zero-Telemetry enforcement across Android, WebExtensions, and Desktop.</li>
+            <li data-i18n="about.li2"><strong>Photorealistic Simulation:</strong> Three.js r185 3D WebGL experiences with spatial procedural Web Audio and zero-width steganographic authorship provenance.</li>
+            <li data-i18n="about.li3"><strong>Language &amp; Compiler Design:</strong> Custom bytecode compilers, lexical analyzers, and Rust runtimes designed for expressive natural syntax.</li>
+            <li data-i18n="about.li4"><strong>Community Digital Welfare:</strong> Uncompromisingly free Islamic productivity companions, speech feedback engines, and verified primary-source historical treatises.</li>
           </ul>
-          <p data-i18n="about.outro">My mission is to build software that serves the community, protects user attention,
-            and aligns with spiritual wellness, combining AI-assisted workflows with robust hand-written logic.</p>
+          <p data-i18n="about.outro">
+            All codebases balance rigorous mathematical architecture (NIST P-256 ECDSA offline verification, PostgreSQL RLS security) with warm, distraction-free user experiences.
+          </p>
         </div>
         <aside class="card profile" data-reveal>
-          <img class="avatar" src="assets/img/avatar.svg" alt="Habib Mukhlis (Habibur Rahman) avatar" />
+          <img class="avatar" src="assets/img/avatar.svg" alt="Habib Mukhlis avatar" />
+          <h3 style="margin-bottom: 0.25rem;">Habib Mukhlis</h3>
+          <p class="muted" style="font-size: 0.85rem; margin-bottom: 1.25rem;">UK Sole Trader &bull; Remote Worldwide</p>
           <ul class="list inline">
             <li><a class="icon-link" href="https://github.com/habibmukhlis" target="_blank" rel="noopener noreferrer"
-                aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"
+                aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
                   aria-hidden="true">
                   <path
                     d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.77-1.35-1.77-1.1-.76.08-.75.08-.75 1.22.09 1.86 1.26 1.86 1.26 1.08 1.86 2.83 1.33 3.52 1.02.11-.8.42-1.33.76-1.63-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.39 1.25-3.23-.12-.3-.54-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.78.84 1.25 1.92 1.25 3.23 0 4.61-2.81 5.63-5.49 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.58A12 12 0 0 0 12 .5Z" />
                 </svg></a></li>
             <li><a class="icon-link" href="https://www.linkedin.com/in/habiburrahman-mukhlis-06074a379/" target="_blank"
-                rel="noopener noreferrer" aria-label="LinkedIn"><svg width="22" height="22" viewBox="0 0 24 24"
+                rel="noopener noreferrer" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24"
                   fill="currentColor" aria-hidden="true">
                   <path
                     d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 8.98h4v12H3v-12Zm7 0h3.8v1.64h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.09v6.32h-4v-5.61c 0-1.34-.03-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96v5.71h-4v-12Z" />
                 </svg></a></li>
             <li><a class="icon-link" href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer"
-                aria-label="Fiverr"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"
+                aria-label="Fiverr"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
                   aria-hidden="true">
                   <circle cx="12" cy="12" r="10" opacity=".12" />
                   <path d="M7 9h10v2H7V9zm0 4h6v2H7v-2z" />
                 </svg></a></li>
-            <li><a class="icon-link email-link" href="#" aria-label="Email"><!-- envelope icon -->
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <li><a class="icon-link email-link" href="#" aria-label="Direct Email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M4 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H4Z"
                     stroke="currentColor" stroke-width="1.8" />
                   <path d="m3 7 9 7 9-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
@@ -147,93 +175,741 @@
       </div>
     </section>
 
-    <!-- Experience -->
-    <section id="experience" class="section">
+    <!-- Twin Pillars / Ecosystem Section -->
+    <section id="ventures" class="section bg-section-low">
       <div class="container">
-        <h2 data-i18n="section.experience.title">Experience</h2>
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+          <p class="eyebrow" data-i18n="ventures.eyebrow">Organizational Matrix</p>
+          <h2 data-i18n="ventures.title">The Twin Pillars of the Ecosystem</h2>
+          <p class="lead" data-i18n="ventures.lead">
+            Bridging commercial cyber-security software engineering with independent community-focused digital welfare.
+          </p>
+        </div>
+
+        <div class="venture-grid" data-reveal>
+          <!-- Pillar 1: Al-Haq Studio -->
+          <article class="venture-card venture-card--studio">
+            <div class="venture-header">
+              <img src="assets/img/studio-logo.png" alt="Al-Haq Studio Mark" class="venture-logo" />
+              <div>
+                <h3 class="venture-title">Al-Haq Studio</h3>
+                <span class="venture-subtitle" data-i18n="ventures.studioSubtitle">Commercial Software Engineering &bull; UK Sole Trader</span>
+              </div>
+            </div>
+            <p class="venture-desc" data-i18n="ventures.studioDesc">
+              The commercial engineering and development studio. Engineers production Android applications, no-root local firewalls, 3D spatial simulations, and zero-knowledge cryptographic systems. Authors, maintains, and licenses sovereign software.
+            </p>
+            <ul class="venture-features">
+              <li><span class="material-symbols-outlined">shield</span> <strong>AmniGuard Firewall:</strong> 80,000+ domain sinkhole &amp; no-root Android NetBlock</li>
+              <li><span class="material-symbols-outlined">keyboard</span> <strong>Platen:</strong> Sovereign 3D typewriter with spatial Web Audio</li>
+              <li><span class="material-symbols-outlined">space_dashboard</span> <strong>AmniSpace:</strong> Minimalist proof-of-work focus launcher</li>
+              <li><span class="material-symbols-outlined">lock</span> <strong>AmniShield Suite:</strong> Cross-platform distraction &amp; explicit content guardian</li>
+            </ul>
+            <div class="venture-footer">
+              <span class="badge badge--production">Commercial Studio</span>
+              <a href="https://alhaq.uk" target="_blank" rel="noopener noreferrer" class="btn btn--text" style="font-size: 0.75rem;">
+                <span>Visit Studio Site</span>
+                <span class="material-symbols-outlined text-sm">open_in_new</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Pillar 2: Al-Haq Initiative -->
+          <article class="venture-card venture-card--initiative">
+            <div class="venture-header">
+              <img src="assets/img/Initiative-Logo.png" alt="Al-Haq Initiative Mark" class="venture-logo" />
+              <div>
+                <h3 class="venture-title">Al-Haq Initiative</h3>
+                <span class="venture-subtitle" data-i18n="ventures.initiativeSubtitle">Community Digital Welfare &bull; Personal Mission</span>
+              </div>
+            </div>
+            <p class="venture-desc" data-i18n="ventures.initiativeDesc">
+              A personal digital mission providing 100% free spiritual productivity tools, primary-source archival research, and Islamic educational platforms. Supported voluntarily and operated under the founder's sole proprietorship.
+            </p>
+            <ul class="venture-features">
+              <li><span class="material-symbols-outlined">menu_book</span> <strong>Al-Haq Hub &amp; TaleemAI:</strong> AI Quran recitation feedback &amp; daily deen tools</li>
+              <li><span class="material-symbols-outlined">auto_stories</span> <strong>Quran Hub:</strong> Distraction-free digital Quran reader with recitations</li>
+              <li><span class="material-symbols-outlined">history_edu</span> <strong>Filastin Verified:</strong> Evidence-led primary-source historical archives</li>
+              <li><span class="material-symbols-outlined">smart_display</span> <strong>Quran Reels Generator:</strong> Automated 9:16 short-form video generator</li>
+            </ul>
+            <div class="venture-footer">
+              <span class="badge badge--opensource">100% Free Welfare</span>
+              <a href="https://alhaq-initiative.org" target="_blank" rel="noopener noreferrer" class="btn btn--text" style="font-size: 0.75rem;">
+                <span>Visit Initiative Site</span>
+                <span class="material-symbols-outlined text-sm">open_in_new</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products & Future Portfolios Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 2rem;">
+          <p class="eyebrow" data-i18n="projects.eyebrow">Comprehensive Portfolio</p>
+          <h2 data-i18n="section.projects.title">Featured Products &amp; Future Ventures</h2>
+          <p class="lead" data-i18n="projects.lead">
+            Production releases, open-source community utilities, compiler architectures, and next-generation R&amp;D pipelines.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-bar" data-reveal>
+          <button type="button" class="filter-btn active" data-filter="all">All (15)</button>
+          <button type="button" class="filter-btn" data-filter="studio">Flagship Studio (5)</button>
+          <button type="button" class="filter-btn" data-filter="community">Community &amp; Deen (4)</button>
+          <button type="button" class="filter-btn" data-filter="devtools">Compilers &amp; Tools (3)</button>
+          <button type="button" class="filter-btn" data-filter="roadmap">Future Business &amp; R&amp;D (3)</button>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="project-grid" data-reveal>
+
+          <!-- 1. AmniGuard Firewall -->
+          <article class="card project" data-category="studio">
+            <div class="project-card__top">
+              <span class="badge badge--production">Production Release</span>
+              <span class="chip chip--studio">Al-Haq Studio</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/amniguard-logo.png" alt="AmniGuard Firewall Logo" />
+            </div>
+            <h3>AmniGuard Firewall &amp; NetBlock</h3>
+            <p>
+              High-performance no-root Android firewall. Processes all network packets 100% locally with an 80,000+ domain adult sinkhole, per-app Wi-Fi/cellular toggles, Port 853 DoT bypass prevention, and live PCAP Wireshark packet capture. Zero telemetry.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Android VpnService</span>
+              <span class="chip">Kotlin / Compose</span>
+              <span class="chip">80k Sinkhole</span>
+              <span class="chip">Port 853 DoT</span>
+              <span class="chip">PCAP Logging</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://alhaq.uk/amniguard" target="_blank" rel="noopener noreferrer">Showcase</a>
+              <a class="btn btn--text" href="https://github.com/alhaq-studio/amniguard-firewall/releases/latest" target="_blank" rel="noopener noreferrer">Direct APK</a>
+              <a class="btn btn--text" href="https://github.com/alhaq-studio/amniguard-firewall" target="_blank" rel="noopener noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <!-- 2. AmniShield Suite -->
+          <article class="card project" data-category="studio">
+            <div class="project-card__top">
+              <span class="badge badge--production">Google Play Live</span>
+              <span class="chip chip--studio">Al-Haq Studio</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/amnshield-logo.png" alt="AmniShield Suite Logo" />
+            </div>
+            <h3>AmniShield Focus &amp; Protection Suite</h3>
+            <p>
+              Multi-platform digital wellness guardian for Android, Windows, and WebExtensions. Blocks explicit URLs across 50,000+ domains, disables infinite-scroll Reels/Shorts/TikTok feeds, and enforces focus schedules with offline NIST P-256 ECDSA licensing.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Kotlin / Compose</span>
+              <span class="chip">Accessibility API</span>
+              <span class="chip">Reels Blocker</span>
+              <span class="chip">NIST P-256</span>
+              <span class="chip">Web Console</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://play.google.com/store/apps/details?id=com.alhaq.deenshield" target="_blank" rel="noopener noreferrer">Google Play</a>
+              <a class="btn btn--text" href="https://amnishield.com" target="_blank" rel="noopener noreferrer">Portal</a>
+              <a class="btn btn--text" href="https://app.amnishield.com" target="_blank" rel="noopener noreferrer">Web Console</a>
+              <a class="btn btn--text" href="https://github.com/habibmukhlis/AmnShield-Android" target="_blank" rel="noopener noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <!-- 3. Platen: 3D Typewriter -->
+          <article class="card project" data-category="studio">
+            <div class="project-card__top">
+              <span class="badge badge--production">Production Release</span>
+              <span class="chip chip--studio">Al-Haq Studio</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/platen-logo.svg" alt="Platen 3D Typewriter Logo" />
+            </div>
+            <h3>Platen: 3D Typewriter</h3>
+            <p>
+              Sovereign 3D mechanical typewriter simulator. Features spatial procedural Web Audio synthesis (mechanical clacks, bells, carriage returns), proof-of-human-authorship cadence recording, and invisible zero-width cryptographic seals across PDF, Word, HTML, and Markdown exports.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Three.js r185</span>
+              <span class="chip">Web Audio API</span>
+              <span class="chip">Authorship Proof</span>
+              <span class="chip">Steganography</span>
+              <span class="chip">100% On-Device PWA</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://platen-typewriter.al-haq-studio.workers.dev" target="_blank" rel="noopener noreferrer">Launch 3D</a>
+              <a class="btn btn--text" href="https://alhaq.uk/platen" target="_blank" rel="noopener noreferrer">Showcase</a>
+              <a class="btn btn--text" href="https://github.com/alhaq-studio/platen-typewriter" target="_blank" rel="noopener noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <!-- 4. AmniSpace Focus Space -->
+          <article class="card project" data-category="studio">
+            <div class="project-card__top">
+              <span class="badge badge--production">Production Release</span>
+              <span class="chip chip--studio">Al-Haq Studio</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/studio-logo.png" alt="AmniSpace Logo" />
+            </div>
+            <h3>AmniSpace Focus Space &amp; Launcher</h3>
+            <p>
+              Minimalist proof-of-work Android focus launcher. Blocks distracting applications until the user proves task completion. Offers a clean typography home screen, fast fuzzy-search app drawer, zero trackers, and deep AmnShield integration.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Android 8.0+</span>
+              <span class="chip">Jetpack Compose</span>
+              <span class="chip">Proof-of-Work</span>
+              <span class="chip">Fuzzy Search</span>
+              <span class="chip">Zero Telemetry</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://alhaq.uk/AmniSpace" target="_blank" rel="noopener noreferrer">Showcase</a>
+              <a class="btn btn--text" href="https://github.com/alhaq-studio/AmniSpace/releases/latest" target="_blank" rel="noopener noreferrer">Direct APK</a>
+              <a class="btn btn--text" href="https://github.com/alhaq-studio/AmniSpace" target="_blank" rel="noopener noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <!-- 5. AmniBlur Web Extension -->
+          <article class="card project" data-category="studio">
+            <div class="project-card__top">
+              <span class="badge badge--production">Production Release</span>
+              <span class="chip chip--studio">Al-Haq Studio</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/amniblur-logo.png" alt="AmniBlur WebExtension Logo" />
+            </div>
+            <h3>AmniBlur Web Extension</h3>
+            <p>
+              Real-time on-device AI visual content moderation browser extension. Powered by local TensorFlow.js (WASM / WebGL). Automatically scans DOM images and video frames directly in the browser, rendering dynamic blur or frosted glass masks over explicit content.
+            </p>
+            <div class="project__meta">
+              <span class="chip">TensorFlow.js</span>
+              <span class="chip">WebGL / WASM</span>
+              <span class="chip">Manifest V3</span>
+              <span class="chip">Real-Time Video</span>
+              <span class="chip">100% Client-Side</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://alhaq.uk/amniblur" target="_blank" rel="noopener noreferrer">Showcase</a>
+              <a class="btn btn--text" href="https://github.com/alhaq-studio/amniblur-extention" target="_blank" rel="noopener noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <!-- 6. Al-Haq Hub & TaleemAI -->
+          <article class="card project" data-category="community">
+            <div class="project-card__top">
+              <span class="badge badge--beta">Live Beta</span>
+              <span class="chip chip--initiative">Al-Haq Initiative</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/quranhub-logo.png" alt="Al-Haq Hub Logo" />
+            </div>
+            <h3>Al-Haq Hub &amp; TaleemAI</h3>
+            <p>
+              Faith-aligned mobile productivity companion and interactive education platform. Provides accurate prayer times, Qibla compass, Hisnul Muslim adhkaar, streaks, and an on-device AI Quran recitation feedback engine powered by TaleemAI acoustic models.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Android Kotlin</span>
+              <span class="chip">TaleemAI Acoustic</span>
+              <span class="chip">Speech Processing</span>
+              <span class="chip">Hisnul Muslim</span>
+              <span class="chip">PWA</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://alhaq-initiative.org/alhaq-hub" target="_blank" rel="noopener noreferrer">App Portal</a>
+              <a class="btn btn--text" href="https://alhaq-initiative.org" target="_blank" rel="noopener noreferrer">Initiative Web</a>
+            </div>
+          </article>
+
+          <!-- 7. Quran Hub & Digital Reader -->
+          <article class="card project" data-category="community">
+            <div class="project-card__top">
+              <span class="badge badge--production">Production Live</span>
+              <span class="chip chip--initiative">Al-Haq Initiative</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/quranhub-logo.png" alt="Quran Hub Logo" />
+            </div>
+            <h3>Quran Hub &amp; Digital Reader</h3>
+            <p>
+              Distraction-free digital Quran reader with synchronized recitation audio, authentic multi-language translations (English, Pashto, Dari, Urdu), verse bookmarking, and local cache index for complete offline reading.
+            </p>
+            <div class="project__meta">
+              <span class="chip">HTML5 / Vanilla JS</span>
+              <span class="chip">Arabic Uthmani</span>
+              <span class="chip">Audio Sync</span>
+              <span class="chip">Offline Caching</span>
+              <span class="chip">Multi-Lingual</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://alhaq-initiative.org/quran" target="_blank" rel="noopener noreferrer">Open Reader</a>
+              <a class="btn btn--text" href="https://alhaq-initiative.org/quranhub" target="_blank" rel="noopener noreferrer">Hub Overview</a>
+            </div>
+          </article>
+
+          <!-- 8. Filastin Verified & Al-Haq Library -->
+          <article class="card project" data-category="community">
+            <div class="project-card__top">
+              <span class="badge badge--production">Published Treatises</span>
+              <span class="chip chip--initiative">Al-Haq Initiative</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/library-logo.png" alt="Al-Haq Library Logo" />
+            </div>
+            <h3>Filastin Verified &amp; Al-Haq Library</h3>
+            <p>
+              Primary-source archival investigations, translations, and research treatises into the legal, historical, and moral record of Palestine and Islamic history. Published openly with verified primary Arabic chroniclers and open-access research PDFs.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Archival Research</span>
+              <span class="chip">Primary Sources</span>
+              <span class="chip">Open Access PDF</span>
+              <span class="chip">Historical Analysis</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://alhaq-initiative.org/library" target="_blank" rel="noopener noreferrer">Browse Library</a>
+              <a class="btn btn--text" href="https://alhaq-initiative.org/publications" target="_blank" rel="noopener noreferrer">Treatises</a>
+            </div>
+          </article>
+
+          <!-- 9. Quran Reels Generator -->
+          <article class="card project" data-category="community">
+            <div class="project-card__top">
+              <span class="badge badge--opensource">Open Source FOSS</span>
+              <span class="chip chip--initiative">Al-Haq Initiative</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/quran-reels-logo.png" alt="Quran Reels Generator Logo" />
+            </div>
+            <h3>Quran Reels Generator</h3>
+            <p>
+              Automated video generation pipeline creating 9:16 vertical short-form content for YouTube Shorts, Reels, and TikTok. Synchronizes Uthmani Arabic text with English translations, multiple reciters, and dynamic backgrounds. Web + Windows desktop app.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Python MoviePy</span>
+              <span class="chip">Flask API</span>
+              <span class="chip">Windows PyInstaller</span>
+              <span class="chip">Docker</span>
+              <span class="chip">HF Spaces</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://habib-hf-quran-reels-generator.hf.space/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              <a class="btn btn--text" href="https://github.com/habibmukhlis/Quran-Reels-Generator" target="_blank" rel="noopener noreferrer">Repo</a>
+              <a class="btn btn--text" href="https://github.com/habibmukhlis/Quran-Reels-Generator/releases/latest" target="_blank" rel="noopener noreferrer">Download</a>
+            </div>
+          </article>
+
+          <!-- 10. PohLang Programming Language -->
+          <article class="card project" data-category="devtools">
+            <div class="project-card__top">
+              <span class="badge badge--opensource">Open Source</span>
+              <span class="chip">Language Engineering</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/pohlang-logo.png" alt="PohLang Logo" />
+            </div>
+            <h3>PohLang</h3>
+            <p>
+              A beginner-focused, natural phrasal programming language engineered as a true compiled language with a standalone Rust runtime, custom bytecode compiler, and virtual machine. Fully independent execution with zero external runtime dependencies.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Rust VM</span>
+              <span class="chip">Bytecode Compiler</span>
+              <span class="chip">Lexer &amp; Parser</span>
+              <span class="chip">AST Lowering</span>
+              <span class="chip">Native Execution</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://github.com/AlhaqGH/PohLang" target="_blank" rel="noopener noreferrer">Repo</a>
+              <a class="btn btn--text" href="https://github.com/AlhaqGH/PohLang/blob/main/doc/PohLang_Guide.md" target="_blank" rel="noopener noreferrer">Language Guide</a>
+            </div>
+          </article>
+
+          <!-- 11. PLHub Development Environment -->
+          <article class="card project" data-category="devtools">
+            <div class="project-card__top">
+              <span class="badge badge--opensource">Open Source</span>
+              <span class="chip">DevTools</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/plhub-logo.png" alt="PLHub Logo" />
+            </div>
+            <h3>PLHub Developer Environment</h3>
+            <p>
+              Official CLI toolkit and development environment for PohLang. Features language-independent build commands, automated test suites, hot reload, and cross-platform build targets for Android APK, Windows EXE, and Web.
+            </p>
+            <div class="project__meta">
+              <span class="chip">Python CLI</span>
+              <span class="chip">Build Automation</span>
+              <span class="chip">Hot Reload</span>
+              <span class="chip">Cross-Compilation</span>
+              <span class="chip">CI/CD Workflows</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub" target="_blank" rel="noopener noreferrer">Repo</a>
+              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub/releases/tag/v0.5.1" target="_blank" rel="noopener noreferrer">Release v0.5.1</a>
+            </div>
+          </article>
+
+          <!-- 12. PohLang VS Code Extension -->
+          <article class="card project" data-category="devtools">
+            <div class="project-card__top">
+              <span class="badge badge--opensource">VS Code Marketplace</span>
+              <span class="chip">IDE Tooling</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/vscode-ext-logo.png" alt="VS Code Extension Logo" />
+            </div>
+            <h3>PohLang VS Code Extension</h3>
+            <p>
+              Full IDE developer experience with custom syntax grammar, IntelliSense, 40+ code snippets, and bundled runtime engine for one-click file execution directly within VS Code without separate runtime installation.
+            </p>
+            <div class="project__meta">
+              <span class="chip">TypeScript</span>
+              <span class="chip">VS Code API</span>
+              <span class="chip">IntelliSense</span>
+              <span class="chip">TextMate Grammar</span>
+            </div>
+            <div class="actions">
+              <a class="btn btn--text" href="https://marketplace.visualstudio.com/items?itemName=pohlang.pohlang-hub" target="_blank" rel="noopener noreferrer">Install Extension</a>
+              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub/tree/main/Editor/vscode" target="_blank" rel="noopener noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <!-- 13. SynthoMesh: 3D Model Studio & AI Viewer (Roadmap / Future Business) -->
+          <article class="card project" data-category="roadmap">
+            <div class="project-card__top">
+              <span class="badge badge--rd">R&amp;D Roadmap</span>
+              <span class="chip chip--studio">Future Business</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/platen-logo.svg" alt="SynthoMesh 3D Logo" />
+            </div>
+            <h3>SynthoMesh: 3D Model Studio &amp; AI Viewer</h3>
+            <p>
+              Next-generation 3D generative mesh studio, procedural shader compiler, and WebGL/WebGPU spatial asset viewer. Enables real-time rendering, spatial asset manipulation, and AI-assisted 3D design generation directly in modern browsers.
+            </p>
+            <div class="project__meta">
+              <span class="chip">WebGL / WebGPU</span>
+              <span class="chip">Generative 3D</span>
+              <span class="chip">Shader Pipeline</span>
+              <span class="chip">Spatial Asset Viewer</span>
+              <span class="chip">Active R&amp;D</span>
+            </div>
+            <div class="actions">
+              <span class="muted" style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Prototype Bench Testing</span>
+              <a class="btn btn--text" href="https://alhaq.uk/products#sec-roadmap" target="_blank" rel="noopener noreferrer">Studio Roadmap</a>
+            </div>
+          </article>
+
+          <!-- 14. AmniBlur Android App (Roadmap / Future Business) -->
+          <article class="card project" data-category="roadmap">
+            <div class="project-card__top">
+              <span class="badge badge--rd">75% Complete</span>
+              <span class="chip chip--studio">Future Business</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/amniblur-logo.png" alt="AmniBlur Android App Logo" />
+            </div>
+            <h3>AmniBlur Android System Screen Overlay</h3>
+            <p>
+              Full-system visual screen moderation utilizing Android MediaProjection API and Google LiteRT (TensorFlow Lite NPU acceleration) at 15–30 FPS. Dynamically renders real-time blur or frosted glass overlays on sensitive imagery across all Android apps.
+            </p>
+            <div class="project__meta">
+              <span class="chip">LiteRT / TFLite NPU</span>
+              <span class="chip">MediaProjection</span>
+              <span class="chip">System Alert Window</span>
+              <span class="chip">On-Device Vision</span>
+            </div>
+            <div class="actions">
+              <span class="muted" style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Alpha Engine Complete</span>
+              <a class="btn btn--text" href="https://alhaq.uk/products#sec-roadmap" target="_blank" rel="noopener noreferrer">Studio Roadmap</a>
+            </div>
+          </article>
+
+          <!-- 15. Amni Cross-Platform Expansion (Roadmap / Future Business) -->
+          <article class="card project" data-category="roadmap">
+            <div class="project-card__top">
+              <span class="badge badge--rd">Specification Phase</span>
+              <span class="chip chip--studio">Future Business</span>
+            </div>
+            <div class="project__thumb">
+              <img src="assets/img/amnshield-logo.png" alt="Amni Cross Platform Logo" />
+            </div>
+            <h3>Amni Ecosystem Cross-Platform Expansion</h3>
+            <p>
+              Extending zero-knowledge cryptographic protection across Apple macOS (NetworkExtension content filtering), Apple iOS (Safari Content Blocker &amp; DNS proxy), and Linux (systemd-resolved local DNS daemon) with unified NIST P-256 policies.
+            </p>
+            <div class="project__meta">
+              <span class="chip">macOS NetworkExtension</span>
+              <span class="chip">iOS Swift Engine</span>
+              <span class="chip">Linux systemd Daemon</span>
+              <span class="chip">NIST P-256</span>
+            </div>
+            <div class="actions">
+              <span class="muted" style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Cross-Platform Sync</span>
+              <a class="btn btn--text" href="https://alhaq.uk/products#sec-roadmap" target="_blank" rel="noopener noreferrer">Studio Roadmap</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Services & Commercial Solutions (Future Business Portfolios) -->
+    <section id="services" class="section bg-section-low">
+      <div class="container">
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+          <p class="eyebrow" data-i18n="services.eyebrow">Professional Engagements</p>
+          <h2 data-i18n="services.title">Commercial Services &amp; Client Solutions</h2>
+          <p class="lead" data-i18n="services.lead">
+            High-integrity engineering services delivered under <strong>Al-Haq Studio</strong> (UK Sole Trader). Available for enterprise contracts, architecture audits, and custom software builds.
+          </p>
+        </div>
+
+        <div class="service-grid" data-reveal>
+          <!-- Service 1 -->
+          <div class="service-card">
+            <div class="service-icon"><span class="material-symbols-outlined">android</span></div>
+            <h3>Native Android &amp; Systems Engineering</h3>
+            <p>Production Android architectures built with modern Jetpack Compose, Clean Architecture, Kotlin Flow, and low-level system services.</p>
+            <ul class="service-bullets">
+              <li><span class="material-symbols-outlined">check_circle</span> Android VpnService &amp; packet inspection</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Accessibility DOM inspection &amp; optimization</li>
+              <li><span class="material-symbols-outlined">check_circle</span> 16 KB page memory alignment (Android 15+)</li>
+              <li><span class="material-symbols-outlined">check_circle</span> R8/ProGuard obfuscation &amp; Play Store release</li>
+            </ul>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card">
+            <div class="service-icon"><span class="material-symbols-outlined">security</span></div>
+            <h3>Zero-Knowledge Security &amp; Hardening</h3>
+            <p>Comprehensive security architecture, cryptographic licensing, and privacy auditing to eliminate data leaks and ensure compliance.</p>
+            <ul class="service-bullets">
+              <li><span class="material-symbols-outlined">check_circle</span> NIST P-256 ECDSA offline cryptographic licensing</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Supabase PostgreSQL Row Level Security (RLS)</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Strict Content Security Policy (CSP) &amp; HTTP headers</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Zero-telemetry audit &amp; privacy compliance</li>
+            </ul>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card">
+            <div class="service-icon"><span class="material-symbols-outlined">view_in_ar</span></div>
+            <h3>3D Web &amp; Spatial Simulations</h3>
+            <p>Interactive 3D web experiences and realistic simulation engines engineered with Three.js, WebGL/WebGPU, and procedural audio.</p>
+            <ul class="service-bullets">
+              <li><span class="material-symbols-outlined">check_circle</span> Photorealistic Three.js r185 rendering</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Spatial Web Audio procedural sound synthesis</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Zero-width steganographic document seals</li>
+              <li><span class="material-symbols-outlined">check_circle</span> 60 FPS client-side offline PWA execution</li>
+            </ul>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card">
+            <div class="service-icon"><span class="material-symbols-outlined">extension</span></div>
+            <h3>Cross-Browser Extensions &amp; MV3</h3>
+            <p>High-security WebExtensions compliant with Manifest V3 for Chrome, Firefox, Safari, and Microsoft Edge.</p>
+            <ul class="service-bullets">
+              <li><span class="material-symbols-outlined">check_circle</span> Declarative Net Request content filtering</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Real-time DOM walking &amp; frame interception</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Chrome Web Store &amp; AMO store release prep</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Background Service Worker lifecycle optimization</li>
+            </ul>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="service-card">
+            <div class="service-icon"><span class="material-symbols-outlined">psychology</span></div>
+            <h3>On-Device AI &amp; Vision Moderation</h3>
+            <p>Edge AI inference running 100% locally on-device without cloud latency, API subscriptions, or user data transmission.</p>
+            <ul class="service-bullets">
+              <li><span class="material-symbols-outlined">check_circle</span> Google LiteRT / TFLite NPU acceleration</li>
+              <li><span class="material-symbols-outlined">check_circle</span> TensorFlow.js (WASM / WebGL) in-browser inference</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Model quantization (INT8/FP16) &amp; size reduction</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Zero cloud vision latency and 100% privacy</li>
+            </ul>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="service-card">
+            <div class="service-icon"><span class="material-symbols-outlined">terminal</span></div>
+            <h3>Compiler Toolchains &amp; Systems Tooling</h3>
+            <p>Custom developer CLI tools, compiler pipelines, domain-specific languages, and IDE extensions.</p>
+            <ul class="service-bullets">
+              <li><span class="material-symbols-outlined">check_circle</span> Lexer, recursive-descent parser, &amp; AST design</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Bytecode compiler &amp; Rust runtime virtual machines</li>
+              <li><span class="material-symbols-outlined">check_circle</span> Cross-platform CLI utilities (Python, Rust, Shell)</li>
+              <li><span class="material-symbols-outlined">check_circle</span> VS Code extensions with custom LSP grammar</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a class="btn btn--primary" href="#contact" data-i18n="services.ctaConsult">Inquire About An Engagement</a>
+          <a class="btn btn--tonal" href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer" style="margin-inline-start: 1rem;">Hire on Fiverr</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture & Systems Skills Grid -->
+    <section id="architecture" class="section">
+      <div class="container">
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+          <p class="eyebrow" data-i18n="arch.eyebrow">Technical Mastery</p>
+          <h2 data-i18n="arch.title">Systems Architecture &amp; Engineering Stack</h2>
+          <p class="lead" data-i18n="arch.lead">
+            A comprehensive overview of programming languages, system runtimes, graphics frameworks, and security layers employed across production software.
+          </p>
+        </div>
+
+        <div class="skills-grid" data-reveal>
+          <!-- Domain 1 -->
+          <div class="skills-card">
+            <h3><span class="material-symbols-outlined">code</span> Languages</h3>
+            <ul class="skills-list">
+              <li><strong>Kotlin &amp; Java:</strong> Android native, Coroutines, Flow</li>
+              <li><strong>Rust:</strong> Virtual machines, compiler runtimes</li>
+              <li><strong>TypeScript &amp; JavaScript:</strong> WebExtensions, modern web</li>
+              <li><strong>Python:</strong> CLI tools, MoviePy, Flask, automation</li>
+              <li><strong>CSS3 &amp; HTML5:</strong> Semantic markup, tokens, glassmorphism</li>
+            </ul>
+          </div>
+
+          <!-- Domain 2 -->
+          <div class="skills-card">
+            <h3><span class="material-symbols-outlined">smartphone</span> Mobile &amp; System</h3>
+            <ul class="skills-list">
+              <li><strong>Jetpack Compose:</strong> Material 3, StateFlow, adaptive UI</li>
+              <li><strong>Android VpnService:</strong> Local packet filtering, DNS sinkhole</li>
+              <li><strong>Accessibility API:</strong> DOM walking &amp; node recycling</li>
+              <li><strong>MediaProjection API:</strong> Screen capture &amp; overlay rendering</li>
+              <li><strong>Flutter Desktop:</strong> Cross-platform Windows utilities</li>
+            </ul>
+          </div>
+
+          <!-- Domain 3 -->
+          <div class="skills-card">
+            <h3><span class="material-symbols-outlined">view_in_ar</span> Graphics &amp; Web</h3>
+            <ul class="skills-list">
+              <li><strong>Three.js r185:</strong> 3D WebGL scenes, lighting, shaders</li>
+              <li><strong>Web Audio API:</strong> Spatial procedural sound synthesis</li>
+              <li><strong>PWA &amp; Service Workers:</strong> Offline-first caching</li>
+              <li><strong>Tailwind CSS &amp; Vanilla:</strong> High-performance stylesheets</li>
+              <li><strong>DOM Manipulation:</strong> High-frequency real-time updates</li>
+            </ul>
+          </div>
+
+          <!-- Domain 4 -->
+          <div class="skills-card">
+            <h3><span class="material-symbols-outlined">verified_user</span> Security &amp; Cloud</h3>
+            <ul class="skills-list">
+              <li><strong>NIST P-256 ECDSA:</strong> Offline cryptographic licensing</li>
+              <li><strong>Supabase PostgreSQL:</strong> Row Level Security (RLS)</li>
+              <li><strong>Firebase Hosting:</strong> Multi-site deploys &amp; clean URLs</li>
+              <li><strong>Docker &amp; Containers:</strong> Reproducible build environments</li>
+              <li><strong>GitHub Actions:</strong> Automated CI/CD, linting, release pipelines</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engineering Experience Timeline -->
+    <section id="experience" class="section bg-section-low">
+      <div class="container">
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+          <p class="eyebrow" data-i18n="exp.eyebrow">Engineering Milestones</p>
+          <h2 data-i18n="section.experience.title">Engineering Experience &amp; Releases</h2>
+          <p class="lead" data-i18n="exp.lead">Key product releases, open-source milestones, and architecture deployments.</p>
+        </div>
+
         <ol class="timeline" data-reveal>
+          <!-- Milestone 1 -->
           <li class="timeline__item">
             <div class="timeline__dot"></div>
             <div class="timeline__card card">
               <header class="timeline__header">
-                <h3 data-i18n="exp4.title">Quran Reels Generator · Open Source</h3>
+                <h3 data-i18n="exp6.title">AmniGuard Firewall &amp; NetBlock &bull; Al-Haq Studio</h3>
+                <span class="muted" data-i18n="exp6.date">2026</span>
+              </header>
+              <ul class="list">
+                <li data-i18n="exp6.b1">Engineered high-performance Android VpnService firewall processing 100% of network packets on-device with zero cloud telemetry.</li>
+                <li data-i18n="exp6.b2">Built an 80,000+ domain adult content sinkhole with Port 853 DoT enforcement and live PCAP Wireshark packet capture.</li>
+                <li data-i18n="exp6.b3">Published open-source release under GNU GPLv3 with offline NIST P-256 ECDSA cryptographic verification.</li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Milestone 2 -->
+          <li class="timeline__item">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card card">
+              <header class="timeline__header">
+                <h3 data-i18n="exp7.title">Platen: 3D Typewriter &bull; Al-Haq Studio</h3>
+                <span class="muted" data-i18n="exp7.date">2026</span>
+              </header>
+              <ul class="list">
+                <li data-i18n="exp7.b1">Developed photorealistic 3D mechanical typewriter simulator in Three.js r185 with procedural spatial Web Audio sound synthesis.</li>
+                <li data-i18n="exp7.b2">Implemented 60 FPS millisecond keystroke cadence telemetry for proof-of-human-authorship provenance.</li>
+                <li data-i18n="exp7.b3">Integrated invisible zero-width steganographic cryptographic watermarks across PDF, Word, HTML, and Markdown exports.</li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Milestone 3 -->
+          <li class="timeline__item">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card card">
+              <header class="timeline__header">
+                <h3 data-i18n="exp4.title">Quran Reels Generator &bull; Open Source</h3>
                 <span class="muted" data-i18n="exp4.date">2025 – 2026</span>
               </header>
               <ul class="list">
-                <li data-i18n="exp4.b1">Built AI-powered Quran video generator with Flask backend, MoviePy pipeline, and
-                  multi-reciter support.</li>
-                <li data-i18n="exp4.b2">Shipped Windows desktop app with PyInstaller, NSIS installer, and automated
-                  GitHub Actions CI/CD releases.</li>
-                <li data-i18n="exp4.b3">Deployed live web app on Hugging Face Spaces with Docker, YouTube OAuth upload,
-                  and 8 production releases.</li>
+                <li data-i18n="exp4.b1">Built automated Quranic video generator with Flask backend, MoviePy rendering pipeline, and multi-reciter synchronization.</li>
+                <li data-i18n="exp4.b2">Shipped lightweight Windows desktop application with PyInstaller, NSIS installer, and automated GitHub Actions CI/CD releases.</li>
+                <li data-i18n="exp4.b3">Deployed containerized live web application on Hugging Face Spaces with Docker and YouTube OAuth upload capabilities.</li>
               </ul>
             </div>
           </li>
+
+          <!-- Milestone 4 -->
           <li class="timeline__item">
             <div class="timeline__dot"></div>
             <div class="timeline__card card">
               <header class="timeline__header">
-                <h3 data-i18n="exp5.title">Al-Haq Initiative · Web Platform</h3>
+                <h3 data-i18n="exp5.title">Al-Haq Initiative Web Platform &bull; Community</h3>
                 <span class="muted" data-i18n="exp5.date">2025 – 2026</span>
               </header>
               <ul class="list">
-                <li data-i18n="exp5.b1">Designed and developed multi-page organisational website with Firebase hosting
-                  and PWA capabilities.</li>
-                <li data-i18n="exp5.b2">Built Quran reader, Islamic library, infographics gallery, and donation system
-                  with automated testing.</li>
-                <li data-i18n="exp5.b3">Implemented full CI/CD with Cypress E2E tests, Jest unit tests, ESLint, and
-                  Prettier integration.</li>
+                <li data-i18n="exp5.b1">Designed and developed multi-page web platform with Firebase multi-site hosting, PWA offline caching, and clean URL routing.</li>
+                <li data-i18n="exp5.b2">Built Quran reader, research library, and donation processing with automated testing and i18n support for EN, AR, PS, FA, UR.</li>
+                <li data-i18n="exp5.b3">Implemented automated test suite with link integrity verification and end-to-end smoke testing.</li>
               </ul>
             </div>
           </li>
+
+          <!-- Milestone 5 -->
           <li class="timeline__item">
             <div class="timeline__dot"></div>
             <div class="timeline__card card">
               <header class="timeline__header">
-                <h3 data-i18n="exp1.title">PohLang Language Development · Open Source</h3>
+                <h3 data-i18n="exp1.title">PohLang &amp; PLHub &bull; Programming Language Engineering</h3>
                 <span class="muted" data-i18n="exp1.date">2024 – 2025</span>
               </header>
               <ul class="list">
-                <li data-i18n="exp1.b1">Designed and implemented a beginner-focused phrasal programming language with
-                  Rust runtime.</li>
-                <li data-i18n="exp1.b2">Built complete compiler toolchain: lexer, parser, bytecode compiler, and VM with
-                  50+ passing tests.</li>
-                <li data-i18n="exp1.b3">Achieved Phase 1 production-ready status with symbolic operators and native
-                  executable support.</li>
-              </ul>
-            </div>
-          </li>
-          <li class="timeline__item">
-            <div class="timeline__dot"></div>
-            <div class="timeline__card card">
-              <header class="timeline__header">
-                <h3 data-i18n="exp2.title">PLHub Development Environment · Open Source</h3>
-                <span class="muted" data-i18n="exp2.date">2024 – 2025</span>
-              </header>
-              <ul class="list">
-                <li data-i18n="exp2.b1">Built professional CLI toolkit with language-independent commands, build
-                  automation, and hot reload.</li>
-                <li data-i18n="exp2.b2">Implemented cross-platform deployment tools for Android APK, iOS IPA, Windows
-                  EXE, and web platforms.</li>
-                <li data-i18n="exp2.b3">Created CI/CD integration with GitHub Actions and automated test discovery for
-                  Python 3.9-3.12.</li>
-              </ul>
-            </div>
-          </li>
-          <li class="timeline__item">
-            <div class="timeline__dot"></div>
-            <div class="timeline__card card">
-              <header class="timeline__header">
-                <h3 data-i18n="exp3.title">VS Code Extension Development · Open Source</h3>
-                <span class="muted" data-i18n="exp3.date">2025</span>
-              </header>
-              <ul class="list">
-                <li data-i18n="exp3.b1">Developed VS Code extension with syntax highlighting, IntelliSense, and 40+ code
-                  snippets for PohLang.</li>
-                <li data-i18n="exp3.b2">Integrated bundled runtime for seamless one-click execution without external
-                  dependencies.</li>
-                <li data-i18n="exp3.b3">Published to VS Code Marketplace with automated tasks and debug configurations.
-                </li>
+                <li data-i18n="exp1.b1">Designed and implemented PohLang, an expressive natural phrasal programming language with standalone Rust runtime.</li>
+                <li data-i18n="exp1.b2">Built complete compiler toolchain from scratch: lexer, recursive-descent parser, bytecode compiler, and virtual machine.</li>
+                <li data-i18n="exp1.b3">Authored PLHub CLI development environment with cross-platform targets and published official VS Code extension to Marketplace.</li>
               </ul>
             </div>
           </li>
@@ -241,226 +917,15 @@
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
+    <!-- Support & Sponsorship Section -->
+    <section id="sponsor" class="section">
       <div class="container">
-        <h2 data-i18n="section.projects.title">Featured Projects</h2>
-        <div class="project-grid" data-reveal>
-          
-          <!-- Platen Typewriter -->
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/platen-logo.svg" alt="Platen: 3D Typewriter Logo" />
-            </div>
-            <h3>Platen: 3D Typewriter</h3>
-            <p>Photorealistic 3D mechanical typewriter simulator with spatial procedural Web Audio, proof-of-human-authorship recording, and invisible zero-width cryptographic seals. 100% on-device &amp; offline PWA.</p>
-            <div class="project__meta">
-              <span class="chip chip--studio">Al-Haq Studio</span>
-              <span class="chip">Three.js</span>
-              <span class="chip">Web Audio</span>
-              <span class="chip">Steganography</span>
-              <span class="chip">PWA</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://platen-typewriter.al-haq-studio.workers.dev" target="_blank"
-                rel="noopener noreferrer">Simulator</a>
-              <a class="btn btn--text" href="https://alhaq.uk/platen" target="_blank"
-                rel="noopener noreferrer">Showcase</a>
-              <a class="btn btn--text" href="https://github.com/alhaq-studio/platen-typewriter" target="_blank"
-                rel="noopener noreferrer">Repo</a>
-            </div>
-          </article>
-
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/quran-reels-logo.png" alt="Quran Reels Generator Logo" />
-            </div>
-            <h3>Quran Reels Generator</h3>
-            <p data-i18n="proj5.desc">AI-powered Quran video generator producing Reels/Shorts/TikTok-ready content with
-              Arabic text, English translation, multiple reciters, and dynamic backgrounds. Web + Windows desktop app.
-            </p>
-            <div class="project__meta">
-              <span class="chip">Open Source</span>
-              <span class="chip">Python</span>
-              <span class="chip">Flask</span>
-              <span class="chip">Docker</span>
-              <span class="chip">Desktop</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://habib-hf-quran-reels-generator.hf.space/" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.demo">Demo</a>
-              <a class="btn btn--text" href="https://github.com/habibmukhlis/Quran-Reels-Generator" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.repo">Repo</a>
-              <a class="btn btn--text" href="https://github.com/habibmukhlis/Quran-Reels-Generator/releases/latest"
-                target="_blank" rel="noopener noreferrer" data-i18n="btn.download">Download</a>
-            </div>
-          </article>
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/amnshield-logo.png" alt="AmniShield Logo" />
-            </div>
-            <h3>AmniShield</h3>
-            <p data-i18n="proj6.desc">Faith-aligned digital protection and wellbeing suite for focus and productivity.
-              Privacy-first Android application with app blocking, keyword filtering, and content moderation.</p>
-            <div class="project__meta">
-              <span class="chip chip--studio">Al-Haq Studio</span>
-              <span class="chip">Kotlin</span>
-              <span class="chip">Java</span>
-              <span class="chip">Android SDK</span>
-              <span class="chip">Accessibility API</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://amnishield.com" target="_blank" rel="noopener noreferrer"
-                data-i18n="btn.visit">Visit</a>
-              <a class="btn btn--text" href="https://play.google.com/store/apps/details?id=com.alhaq.deenshield"
-                target="_blank" rel="noopener noreferrer" data-i18n="btn.play">Google Play</a>
-              <a class="btn btn--text" href="https://github.com/habibmukhlis/AmnShield-Android" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.repo">Repo</a>
-            </div>
-          </article>
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/amngaze-logo.png" alt="AmniBlur Logo" />
-            </div>
-            <h3>AmniBlur</h3>
-            <p data-i18n="proj4.desc">Faith-aligned visual content protection using on-device AI. An Android application and browser extension that runs offline-first to detect and blur explicit content in real time using local TensorFlow.js and LiteRT models.</p>
-            <div class="project__meta">
-              <span class="chip chip--studio">Al-Haq Studio</span>
-              <span class="chip">Kotlin / JS</span>
-              <span class="chip">LiteRT / TF.js</span>
-              <span class="chip">On-Device AI</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://alhaq.uk/amniblur" target="_blank"
-                rel="noopener noreferrer">Product Portal</a>
-              <a class="btn btn--text" href="https://github.com/alhaq-studio/amniblur-extention" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.repo">Repo</a>
-            </div>
-          </article>
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/Initiative-Logo.png" alt="Al-Haq Initiative Logo" />
-            </div>
-            <h3>Al-Haq Initiative</h3>
-            <p data-i18n="proj7.desc">Full-featured organizational website with Quran reader, Islamic library,
-              infographics gallery, donation system, and Al-Haq Hub app landing page. Firebase-hosted PWA with E2E
-              testing.</p>
-            <div class="project__meta">
-              <span class="chip chip--initiative">Al-Haq Initiative</span>
-              <span class="chip">HTML5</span>
-              <span class="chip">Firebase</span>
-              <span class="chip">PWA</span>
-              <span class="chip">Cypress</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://alhaq-initiative.org" target="_blank" rel="noopener noreferrer"
-                data-i18n="btn.visit">Visit</a>
-              <a class="btn btn--text" href="https://github.com/habibmukhlis/alhaq-website" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.repo">Repo</a>
-            </div>
-          </article>
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/vscode-ext-logo.png" alt="AmniShield Extension Logo" class="img-invert-hue" />
-            </div>
-            <h3>AmniShield Extension</h3>
-            <p data-i18n="proj8.desc">Cross-browser extension delivering the AmniShield protection suite (domain filters,
-              custom keywords, and productivity tab manager) to Chrome, Firefox, and Edge browsers.</p>
-            <div class="project__meta">
-              <span class="chip chip--studio">Al-Haq Studio</span>
-              <span class="chip">JavaScript</span>
-              <span class="chip">Web Extensions</span>
-              <span class="chip">Declarative Net Request</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://amnishield.com" target="_blank" rel="noopener noreferrer"
-                data-i18n="btn.visit">Visit</a>
-              <a class="btn btn--text" href="https://github.com/alhaq-studio/amnshield-extension" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.repo">Repo</a>
-            </div>
-          </article>
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/pohlang-logo.png" alt="PohLang Logo" />
-            </div>
-            <h3>PohLang</h3>
-            <p data-i18n="proj1.desc">A beginner-focused, fully phrasal (English-like) programming language designed to
-              be a real compiled language with standalone Rust runtime, native executables, and full independence.</p>
-            <div class="project__meta">
-              <span class="chip">Open Source</span>
-              <span class="chip">Rust</span>
-              <span class="chip">Compiler</span>
-              <span class="chip">VM</span>
-              <span class="chip">Bytecode</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PohLang" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.repo">Repo</a>
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PohLang/blob/main/README.md" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.readme">README</a>
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PohLang/blob/main/doc/PohLang_Guide.md"
-                target="_blank" rel="noopener noreferrer" data-i18n="btn.docs">Docs</a>
-            </div>
-          </article>
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/plhub-logo.png" alt="PLHub Logo" />
-            </div>
-            <h3>PLHub</h3>
-            <p data-i18n="proj2.desc">Official development environment for PohLang with language-independent commands,
-              build automation, test automation, hot reload, and professional project templates. Like Flutter is to
-              Dart.</p>
-            <div class="project__meta">
-              <span class="chip">Open Source</span>
-              <span class="chip">Python</span>
-              <span class="chip">CLI</span>
-              <span class="chip">DevTools</span>
-              <span class="chip">Automation</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub" target="_blank" rel="noopener noreferrer"
-                data-i18n="btn.repo">Repo</a>
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub/blob/main/README.md" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.readme">README</a>
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub/releases/tag/v0.5.1" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.download">Download</a>
-            </div>
-          </article>
-          <article class="card project">
-            <div class="project__thumb">
-              <img src="assets/img/vscode-ext-logo.png" alt="VS Code Extension Logo" />
-            </div>
-            <h3>PohLang VS Code Extension</h3>
-            <p data-i18n="proj3.desc">Full IDE experience with syntax highlighting, IntelliSense, 40+ code snippets,
-              bundled runtime, and one-click execution. No separate download needed, everything in one place.</p>
-            <div class="project__meta">
-              <span class="chip">Open Source</span>
-              <span class="chip">TypeScript</span>
-              <span class="chip">VS Code API</span>
-              <span class="chip">IntelliSense</span>
-            </div>
-            <div class="actions">
-              <a class="btn btn--text" href="https://marketplace.visualstudio.com/items?itemName=pohlang.pohlang-hub"
-                target="_blank" rel="noopener noreferrer" data-i18n="btn.install">Install</a>
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub/tree/main/Editor/vscode" target="_blank"
-                rel="noopener noreferrer" data-i18n="btn.repo">Repo</a>
-              <a class="btn btn--text" href="https://github.com/AlhaqGH/PLHub/blob/main/Editor/vscode/README.md"
-                target="_blank" rel="noopener noreferrer" data-i18n="btn.readme">README</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Support & Sponsorship -->
-    <section id="sponsor" class="section" style="background: rgba(14, 165, 233, 0.04); border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);">
-      <div class="container">
-        <div class="card" data-reveal style="max-width: 800px; margin: 0 auto; text-align: center;">
-          <h2 style="font-size: 2rem; margin-bottom: 0.75rem;">Support My Work &amp; Community Mission</h2>
-          <p style="color: var(--color-muted, #94a3b8); line-height: 1.6; margin-bottom: 1.5rem;">
-            As an independent software engineer and author, I build open-source tools, privacy technologies, and educational platforms through <strong>Al-Haq Studio</strong> and the <strong>Al-Haq Community Initiative</strong>. Your patronage and sponsorship directly fund independent research, server hosting, and free public software.
+        <div class="card support-card" data-reveal>
+          <h2 data-i18n="sponsor.title">Support Independent Engineering &amp; Research</h2>
+          <p class="support-card__copy" data-i18n="sponsor.copy">
+            As an independent software engineer and author, I build open-source tools, sovereign privacy utilities, and educational platforms through <strong>Al-Haq Studio</strong> and the <strong>Al-Haq Initiative</strong>. Your patronage and sponsorship directly fund independent research, infrastructure hosting, and free public software.
           </p>
-          <div class="actions" style="justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <div class="actions support-actions">
             <a class="btn btn--primary" href="https://github.com/sponsors/habibmukhlis" target="_blank" rel="noopener noreferrer">
               GitHub Sponsors
             </a>
@@ -478,22 +943,32 @@
             </a>
           </div>
 
-          <small style="display: block; color: var(--color-muted, #94a3b8); font-size: 0.8rem;">
+          <!-- Embedded Ko-fi Panel -->
+          <div style="max-width: 580px; margin: 2rem auto; border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-2); border: 1px solid hsla(var(--outline-variant) / 0.15); background: #ffffff;">
+            <iframe id="kofiframe" src="https://ko-fi.com/alhaq/?hidefeed=true&widget=true&embed=true&preview=true" style="border:none;width:100%;padding:4px;background:#f9f9f9;" height="712" title="Al-Haq Patronage"></iframe>
+          </div>
+
+          <small class="support-card__note" data-i18n="sponsor.note">
             Personal community initiative by Habib Mukhlis (Habibur Rahman) (UK sole trader). Not a registered charity or corporate trust.
           </small>
         </div>
       </div>
     </section>
 
-    <!-- Shared multi-site assistant -->
-    <section id="assistant" class="section">
+    <!-- Multi-Site AI Assistant Section -->
+    <section id="assistant" class="section bg-section-low">
       <div class="container">
         <div class="card assistant-card" data-reveal>
-          <h2>Ask the Al-Haq Assistant</h2>
-          <p>The assistant can answer about this portfolio, Al-Haq Studio, the Al-Haq Initiative, AmniShield, and related projects. Please do not share personal or sensitive information in the chat.</p>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+            <span class="material-symbols-outlined" style="font-size: 28px; color: hsl(var(--brand-2));">smart_toy</span>
+            <h2 style="margin: 0;" data-i18n="assistant.title">Ask the Al-Haq Assistant</h2>
+          </div>
+          <p data-i18n="assistant.desc">
+            The AI assistant answers questions regarding this portfolio, products (AmniGuard, AmniShield, Platen, AmniSpace), Al-Haq Studio services, and the Al-Haq Initiative library.
+          </p>
           <iframe
             src="https://alhaq-hf-alhaq-website-chatbot.hf.space/?context=portfolio"
-            title="Al-Haq Assistant"
+            title="Al-Haq Multi-Site Assistant"
             loading="lazy"
             referrerpolicy="no-referrer"
             allow="clipboard-write"></iframe>
@@ -501,15 +976,16 @@
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact & Hire Section -->
     <section id="contact" class="section">
       <div class="container grid grid-2">
         <div class="card" data-reveal>
-          <h2 data-i18n="section.contact.title">Contact</h2>
-          <p data-i18n="contact.p1">Have a question or want to work together? Send a message and I’ll get back to you.
+          <h2 data-i18n="section.contact.title">Contact &amp; Inquiries</h2>
+          <p data-i18n="contact.p1">
+            Have a project, security audit, architecture question, or freelance opportunity? Send a message and I will respond promptly.
           </p>
           <div class="actions actions--contact">
-            <a class="btn btn--primary email-link" href="#" data-i18n="contact.btnEmail">Email me</a>
+            <a class="btn btn--primary email-link" href="#" data-i18n="contact.btnEmail">Direct Email</a>
             <a class="btn" href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer"
               data-i18n="contact.btnFiverr">Hire on Fiverr</a>
           </div>
@@ -526,41 +1002,40 @@
             </div>
             <div class="field">
               <label for="message" data-i18n="contact.labelMessage">Message</label>
-              <textarea id="message" name="message" rows="5" required placeholder="How can I help?"
+              <textarea id="message" name="message" rows="5" required placeholder="How can I help with your project?"
                 data-i18n-placeholder="contact.phMessage"></textarea>
             </div>
             <label class="sr-only" aria-hidden="true">Do not fill this field if you are human
               <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
             </label>
             <div class="form__status" id="formStatus" role="status" aria-live="polite"></div>
-            <button class="btn btn--primary" type="submit" data-i18n="contact.btnSend">Send</button>
+            <button class="btn btn--primary" type="submit" data-i18n="contact.btnSend">Send Message</button>
           </form>
         </div>
+
         <aside class="card" data-reveal>
           <h3 data-i18n="contact.availability">Availability</h3>
-          <p data-i18n="contact.availabilityText">Open to full‑time roles, freelance projects, and collaborations.</p>
+          <p data-i18n="contact.availabilityText">Open to full-time architecture roles, contract engineering, and bespoke freelance builds.</p>
           <h3 data-i18n="contact.location">Location</h3>
-          <p data-i18n="contact.locationText">Remote, Global</p>
-          <h3 data-i18n="contact.elsewhere">Elsewhere</h3>
+          <p data-i18n="contact.locationText">United Kingdom (Remote Worldwide)</p>
+          <h3 data-i18n="contact.elsewhere">Ecosystem Links</h3>
           <ul class="list">
-            <li><a href="https://alhaq.uk" target="_blank" rel="noopener noreferrer">Al-Haq Studio</a></li>
-            <li><a href="https://alhaq-initiative.org" target="_blank" rel="noopener noreferrer">Al-Haq Initiative</a>
-            </li>
-            <li><a href="https://amnishield.com" target="_blank" rel="noopener noreferrer">AmniShield</a></li>
-            <li><a href="https://github.com/habibmukhlis" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/habiburrahman-mukhlis-06074a379/" target="_blank"
-                rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer">Fiverr</a></li>
+            <li><a href="https://alhaq.uk" target="_blank" rel="noopener noreferrer"><strong>Al-Haq Studio</strong> (Engineering Studio)</a></li>
+            <li><a href="https://alhaq-initiative.org" target="_blank" rel="noopener noreferrer"><strong>Al-Haq Initiative</strong> (Community Digital Welfare)</a></li>
+            <li><a href="https://amnishield.com" target="_blank" rel="noopener noreferrer"><strong>AmniShield</strong> (Protection Suite)</a></li>
+            <li><a href="https://github.com/habibmukhlis" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong> (@habibmukhlis)</a></li>
+            <li><a href="https://www.linkedin.com/in/habiburrahman-mukhlis-06074a379/" target="_blank" rel="noopener noreferrer"><strong>LinkedIn Profile</strong></a></li>
+            <li><a href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer"><strong>Fiverr Studio Profile</strong></a></li>
           </ul>
         </aside>
       </div>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
     <div class="container footer__inner">
-      <small>© <span id="year"></span> Habib Mukhlis (Habibur Rahman). <span data-i18n="footer.rights">All rights
-          reserved.</span></small>
+      <small>© <span id="year"></span> Habib Mukhlis (Habibur Rahman). <span data-i18n="footer.rights">All rights reserved.</span></small>
       <div class="footer__controls">
         <label class="switch">
           <input type="checkbox" id="reduceMotionToggle" />
@@ -571,6 +1046,8 @@
   </footer>
 
   <script src="assets/js/app.js" type="module"></script>
+  <!-- Buy Me a Coffee Floating Widget -->
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="alhaq" data-description="Support me on Buy me a coffee!" data-message="" data-color="#0A2540" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </body>
 
 </html>

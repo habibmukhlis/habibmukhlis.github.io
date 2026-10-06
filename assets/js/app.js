@@ -14,7 +14,7 @@ function applyTheme(theme) {
   html.classList.toggle('dark', isDark);
   const brand = getComputedStyle(html).getPropertyValue('--brand');
   const [h, s, l] = brand.split(/\s+/);
-  $('#theme-color-meta')?.setAttribute('content', `hsl(${h} ${s} ${isDark ? '16%' : '50%'})`);
+  $('#theme-color-meta')?.setAttribute('content', `hsl(${h} ${s} ${l})`);
 }
 
 function getTheme() {
@@ -50,12 +50,26 @@ if (reduceMotionToggle) {
 }
 
 // Mobile nav
+function closeMobileNav() {
+  const menu = $('#nav-menu');
+  const toggle = $('#navToggle');
+  menu?.classList.remove('is-open');
+  toggle?.setAttribute('aria-expanded', 'false');
+}
+
 $('#navToggle')?.addEventListener('click', () => {
   const menu = $('#nav-menu');
   const open = menu.classList.toggle('is-open');
   $('#navToggle').setAttribute('aria-expanded', String(open));
 });
-$$('#nav-menu a').forEach((a) => a.addEventListener('click', () => $('#nav-menu')?.classList.remove('is-open')));
+$$('#nav-menu a').forEach((a) => a.addEventListener('click', closeMobileNav));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMobileNav();
+});
+document.addEventListener('click', (e) => {
+  const nav = $('.nav');
+  if (nav && !nav.contains(e.target)) closeMobileNav();
+});
 
 // Scroll reveal
 const revealEls = $$('[data-reveal]');
@@ -71,81 +85,481 @@ if ('IntersectionObserver' in window) {
   revealEls.forEach((el) => el.classList.add('is-visible'));
 }
 
+// Project category filtering
+$$('.filter-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    $$('.filter-btn').forEach((b) => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    const filter = btn.getAttribute('data-filter');
+    $$('.project').forEach((card) => {
+      const cat = card.getAttribute('data-category');
+      const matches = (filter === 'all' || cat === filter);
+      card.style.display = matches ? '' : 'none';
+    });
+  });
+});
+
 // Year
 $('#year').textContent = String(new Date().getFullYear());
-
-// Accent color from image extraction disabled for monochromatic design system
 
 // ---- i18n ----
 const dict = {
   en: {
     skip: 'Skip to content',
-    nav: { about: 'About', experience: 'Experience', projects: 'Projects', contact: 'Contact' },
-    hero: { hello: 'Hello, I’m', lead: 'Founder of Al-Haq Studio and Al-Haq Initiative. Crafting native Android applications, privacy-first tools, desktop utilities, and browser extensions.', ctaProjects: 'View Projects', ctaContact: 'Contact Me', ctaFiverr: 'Hire me on Fiverr', ctaEmail: 'Email me', meta1: 'Android, Web, Desktop, Extensions', meta2: 'AI-assisted' },
-    section: { about: { title: 'About' }, experience: { title: 'Experience' }, projects: { title: 'Featured Projects' }, contact: { title: 'Contact' } },
-    about: { intro: 'I am the founder of Al-Haq Studio and Al-Haq Initiative. I specialise in building local-first, privacy-respecting software. I create:', li1: 'Native Android applications and utility suites (Kotlin, Java)', li2: 'Responsive modern websites and static web applications', li3: 'Professional cross-browser extensions', outro: 'My mission is to build software that serves the community, protects user attention, and aligns with spiritual wellness, combining AI-assisted workflows with robust hand-written logic.' },
-    exp1: { title: 'PohLang Language Development · Open Source', date: '2024 – 2025', b1: 'Designed and built PohLang, a beginner-friendly phrasal programming language.', b2: 'Created the entire compiler, virtual machine, and Rust runtime from scratch.', b3: 'Passed a robust custom test suite of 50+ language integration tests.' },
-    exp2: { title: 'PLHub Development Environment · Open Source', date: '2024 – 2025', b1: 'Built professional CLI toolkit with language-independent commands and hot reload.', b2: 'Implemented cross-platform deployment tools for Android, Windows, and web targets.', b3: 'Set up automated test pipelines with GitHub Actions for multi-version testing.' },
-    exp3: { title: 'VS Code Extension Development · Open Source', date: '2025', b1: 'Developed the official PohLang VS Code extension featuring custom syntax highlighting and IntelliSense.', b2: 'Integrated a bundled runtime engine for seamless execution without external setup.', b3: 'Published to the VS Code Marketplace with automated release tasks.' },
-    exp4: { title: 'Quran Reels Generator · Open Source', date: '2025 – 2026', b1: 'Created an open-source Quranic video automation tool with Flask and MoviePy rendering pipelines.', b2: 'Shipped a lightweight Windows desktop app package with PyInstaller and automated GitHub Actions CI/CD.', b3: 'Deployed a live web app on Hugging Face Spaces using Docker containers.' },
-    exp5: { title: 'Al-Haq Initiative · Web Platform', date: '2025 – 2026', b1: 'Designed and developed the multi-page organisational website with Firebase hosting and PWA capabilities.', b2: 'Built a local-first Quran reader, digital library, responsive infographics, and a secure donation flow.', b3: 'Set up E2E testing pipelines with Cypress and Firebase Hosting deployment workflows.' },
-    proj1: { desc: 'A beginner-focused, fully phrasal (English-like) programming language designed to be a real compiled language with standalone Rust runtime, native executables, and full independence.' },
-    proj2: { desc: 'Official development environment for PohLang with language-independent commands, build automation, test automation, hot reload, and professional project templates. Like Flutter is to Dart.' },
-    proj3: { desc: 'Full IDE experience with syntax highlighting, IntelliSense, 40+ code snippets, bundled runtime, and one-click execution. No separate download needed, everything in one place.' },
-    proj4: { desc: 'On-device AI visual content protection. Offline-first screen moderation using local LiteRT / TensorFlow Lite models, available as an Android app and browser extension.' },
-    proj5: { desc: 'Open-source Quranic video generator producing Reels, Shorts, and TikTok-ready content with Arabic text, English translation, multiple reciters, and dynamic backgrounds. Web + Windows desktop app.' },
-    proj6: { desc: 'Privacy-first digital protection for Android. System blocker with 50,000+ domain database, keyword filtering, social media Reels blocking, and focus rules.' },
-    proj7: { desc: 'Full-featured organisational website with Quran reader, Islamic library, infographics gallery, donation system, and Al-Haq Hub app landing page. Firebase-hosted PWA with automated testing.' },
-    proj8: { desc: 'Cross-browser extension delivering the AmniShield protection suite (domain filters, custom keywords, and productivity tab tools) to Chrome, Firefox, and Edge browsers.' },
-    btn: { demo: 'Demo', docs: 'Docs', code: 'Code', install: 'Install', repo: 'Repo', readme: 'README', download: 'Download', visit: 'Visit', play: 'Google Play' },
-    contact: { p1: 'Have a question or want to work together? Send a message and I’ll get back to you.', labelName: 'Name', phName: 'Your name', labelEmail: 'Email', phEmail: 'you@example.com', labelMessage: 'Message', phMessage: 'How can I help?', btnSend: 'Send', btnEmail: 'Email me', btnFiverr: 'Hire on Fiverr', success: 'Thanks! Your message was sent.', error: 'Sorry, something went wrong. Please try again or email me directly.', availability: 'Availability', availabilityText: 'Open to full‑time roles, freelance projects, and collaborations.', location: 'Location', locationText: 'Remote, Global', elsewhere: 'Elsewhere' },
-    footer: { rights: 'All rights reserved.', reduceMotion: 'Reduce motion' }
+    nav: {
+      about: 'About',
+      ventures: 'Ventures',
+      projects: 'Products',
+      services: 'Services',
+      architecture: 'Architecture',
+      experience: 'Experience',
+      assistant: 'Assistant',
+      sponsor: 'Sponsor',
+      contact: 'Contact'
+    },
+    hero: {
+      hello: 'Founder & Principal Systems Architect',
+      lead: 'Lead Architect behind <strong>Al-Haq Studio</strong> and the <strong>Al-Haq Initiative</strong>. Engineering sovereign on-device privacy guardians, photorealistic 3D spatial simulations, compiler toolchains, and community Islamic digital welfare tools.',
+      ctaProjects: 'Explore Products',
+      ctaServices: 'Client Solutions',
+      ctaContact: 'Contact Me',
+      ctaEmail: 'Direct Email',
+      ctaFiverr: 'Hire me on Fiverr',
+      meta1: 'Android · Web · Desktop · Extensions',
+      meta2: 'Local-first'
+    },
+    kpi: {
+      projects: 'Projects & Tools',
+      privacy: 'On-Device Privacy',
+      platforms: 'Primary OS Targets',
+      crypto: 'NIST Cryptography'
+    },
+    section: {
+      about: { title: 'About & Core Philosophy' },
+      experience: { title: 'Engineering Experience & Releases' },
+      projects: { title: 'Featured Products & Future Ventures' },
+      contact: { title: 'Contact & Inquiries' }
+    },
+    about: {
+      intro: 'I am an independent systems engineer, software architect, and historical researcher. I operate two complementary initiatives designed to advance digital sovereignty, ethical wellness, and open community tools:',
+      li1: '<strong>Local-First Systems:</strong> On-device network packet inspection, local vision AI, and Zero-Telemetry enforcement across Android, WebExtensions, and Desktop.',
+      li2: '<strong>Photorealistic Simulation:</strong> Three.js r185 3D WebGL experiences with spatial procedural Web Audio and zero-width steganographic authorship provenance.',
+      li3: '<strong>Language & Compiler Design:</strong> Custom bytecode compilers, lexical analyzers, and Rust runtimes designed for expressive natural syntax.',
+      li4: '<strong>Community Digital Welfare:</strong> Uncompromisingly free Islamic productivity companions, speech feedback engines, and verified primary-source historical treatises.',
+      outro: 'All codebases balance rigorous mathematical architecture (NIST P-256 ECDSA offline verification, PostgreSQL RLS security) with warm, distraction-free user experiences.'
+    },
+    ventures: {
+      eyebrow: 'Organizational Matrix',
+      title: 'The Twin Pillars of the Ecosystem',
+      lead: 'Bridging commercial cyber-security software engineering with independent community-focused digital welfare.',
+      studioSubtitle: 'Commercial Software Engineering • UK Sole Trader',
+      studioDesc: 'The commercial engineering and development studio. Engineers production Android applications, no-root local firewalls, 3D spatial simulations, and zero-knowledge cryptographic systems. Authors, maintains, and licenses sovereign software.',
+      initiativeSubtitle: 'Community Digital Welfare • Personal Mission',
+      initiativeDesc: 'A personal digital mission providing 100% free spiritual productivity tools, primary-source archival research, and Islamic educational platforms. Supported voluntarily and operated under the founder\'s sole proprietorship.'
+    },
+    projects: {
+      eyebrow: 'Comprehensive Portfolio',
+      lead: 'Production releases, open-source community utilities, compiler architectures, and next-generation R&D pipelines.'
+    },
+    services: {
+      eyebrow: 'Professional Engagements',
+      title: 'Commercial Services & Client Solutions',
+      lead: 'High-integrity engineering services delivered under <strong>Al-Haq Studio</strong> (UK sole trader). Custom architecture, security audits, and production software.',
+      ctaConsult: 'Inquire About An Engagement'
+    },
+    arch: {
+      eyebrow: 'Technical Mastery',
+      title: 'Systems Architecture & Engineering Stack',
+      lead: 'A comprehensive overview of programming languages, system runtimes, graphics frameworks, and security layers employed across production software.'
+    },
+    exp: {
+      eyebrow: 'Engineering Milestones',
+      lead: 'Key product releases, open-source milestones, and architecture deployments.'
+    },
+    exp6: {
+      title: 'AmniGuard Firewall & NetBlock • Al-Haq Studio',
+      date: '2026',
+      b1: 'Engineered high-performance Android VpnService firewall processing 100% of network packets on-device with zero cloud telemetry.',
+      b2: 'Built an 80,000+ domain adult content sinkhole with Port 853 DoT enforcement and live PCAP Wireshark packet capture.',
+      b3: 'Published open-source release under GNU GPLv3 with offline NIST P-256 ECDSA cryptographic verification.'
+    },
+    exp7: {
+      title: 'Platen: 3D Typewriter • Al-Haq Studio',
+      date: '2026',
+      b1: 'Developed photorealistic 3D mechanical typewriter simulator in Three.js r185 with procedural spatial Web Audio sound synthesis.',
+      b2: 'Implemented 60 FPS millisecond keystroke cadence telemetry for proof-of-human-authorship provenance.',
+      b3: 'Integrated invisible zero-width steganographic cryptographic watermarks across PDF, Word, HTML, and Markdown exports.'
+    },
+    exp4: {
+      title: 'Quran Reels Generator • Open Source',
+      date: '2025 – 2026',
+      b1: 'Built automated Quranic video generator with Flask backend, MoviePy rendering pipeline, and multi-reciter synchronization.',
+      b2: 'Shipped lightweight Windows desktop application with PyInstaller, NSIS installer, and automated GitHub Actions CI/CD releases.',
+      b3: 'Deployed containerized live web application on Hugging Face Spaces with Docker and YouTube OAuth upload capabilities.'
+    },
+    exp5: {
+      title: 'Al-Haq Initiative Web Platform • Community',
+      date: '2025 – 2026',
+      b1: 'Designed and developed multi-page web platform with Firebase multi-site hosting, PWA offline caching, and clean URL routing.',
+      b2: 'Built Quran reader, research library, and donation processing with automated testing and i18n support for EN, AR, PS, FA, UR.',
+      b3: 'Implemented automated test suite with link integrity verification and end-to-end smoke testing.'
+    },
+    exp1: {
+      title: 'PohLang & PLHub • Programming Language Engineering',
+      date: '2024 – 2025',
+      b1: 'Designed and implemented PohLang, an expressive natural phrasal programming language with standalone Rust runtime.',
+      b2: 'Built complete compiler toolchain from scratch: lexer, recursive-descent parser, bytecode compiler, and virtual machine.',
+      b3: 'Authored PLHub CLI development environment with cross-platform targets and published official VS Code extension to Marketplace.'
+    },
+    sponsor: {
+      title: 'Support Independent Engineering & Research',
+      copy: 'As an independent software engineer and author, I build open-source tools, sovereign privacy utilities, and educational platforms through <strong>Al-Haq Studio</strong> and <strong>Al-Haq Initiative</strong>. Your sponsorship fuels server infrastructure, open research, and ad-free community software.',
+      note: 'Personal community initiative by Habib Mukhlis (Habibur Rahman) (UK sole trader). Not a registered charity or corporate trust.'
+    },
+    assistant: {
+      title: 'Ask the Al-Haq Assistant',
+      desc: 'The AI assistant answers questions regarding this portfolio, products (AmniGuard, AmniShield, Platen, AmniSpace), Al-Haq Studio services, and the Al-Haq Initiative library.'
+    },
+    btn: {
+      demo: 'Demo',
+      docs: 'Docs',
+      code: 'Code',
+      install: 'Install',
+      repo: 'Repo',
+      readme: 'README',
+      download: 'Download',
+      visit: 'Visit',
+      play: 'Google Play'
+    },
+    contact: {
+      p1: 'Have a project, security audit, architecture question, or freelance opportunity? Send a message and I will respond promptly.',
+      labelName: 'Name',
+      phName: 'Your name',
+      labelEmail: 'Email',
+      phEmail: 'you@example.com',
+      labelMessage: 'Message',
+      phMessage: 'How can I help?',
+      btnSend: 'Send Message',
+      btnEmail: 'Direct Email',
+      btnFiverr: 'Hire on Fiverr',
+      success: 'Thanks! Your message was sent.',
+      error: 'Sorry, something went wrong. Please try again or email me directly.',
+      availability: 'Availability',
+      availabilityText: 'Open to full-time architecture roles, contract engineering, and bespoke freelance builds.',
+      location: 'Location',
+      locationText: 'United Kingdom (Remote Worldwide)',
+      elsewhere: 'Ecosystem Links'
+    },
+    footer: {
+      rights: 'All rights reserved.',
+      reduceMotion: 'Reduce motion'
+    }
   },
   ps: {
     skip: 'مينځپانګې ته ولاړ شئ',
-    nav: { about: 'زما په اړه', experience: 'تجربه', projects: 'پروژې', contact: 'اړيکه' },
-    hero: { hello: 'سلام، زه يم', lead: 'د الحق سټوډیو او الحق نوښت بنسټ اېښودونکی. د AI په مرسته د انډرایډ اپونو، عصري وېبسايټونو، ډيسکټاپ اپونو او براوزر توسيعاتو جوړوونکی.', ctaProjects: 'پروژې وګورئ', ctaContact: 'اړیکه راسره ونیسئ', ctaFiverr: 'پر فایور استخدام مې کړئ', ctaEmail: 'بریښنالیک واستوئ', meta1: 'انډرایډ، وېب، ډيسکټاپ، توسيعات', meta2: 'AI-مرسته' },
-    section: { about: { title: 'زما په اړه' }, experience: { title: 'تجربه' }, projects: { title: 'ځانګړې پروژې' }, contact: { title: 'اړيکه' } },
-    about: { intro: 'زه د الحق سټوډیو او الحق نوښت بنسټ اېښودونکی یم. زه د محلي او محرمیت لرونکي سافټویرونو جوړولو متخصص یم. زه جوړوم:', li1: 'اصلي انډرایډ اپلیکیشنونه او محافظتي کڅوړې (Kotlin, Java)', li2: 'عصري ځواب ویونکي وېبسايټونه او سټېټيک وېب اپونه', li3: 'مسلکي براوزر توسيعات', outro: 'زما موخه د داسې سافټویرونو جوړول دي چې ټولنې ته خدمت وکړي، د کاروونکو تمرکز خوندي کړي، او د معنوي هوساینې سره سمون ولري.' },
-    exp1: { title: 'د PohLang ژبې پرمختګ · خلاص سرچینه', date: '۲۰۲۴ – ۲۰۲۵', b1: 'د پیلامرو لپاره د Rust رن‌ټایم سره یوه بشپړه جملوی برنامه لیکنې ژبه ډیزاین او پلي کړه.', b2: 'بشپړ کمپایلر تولچین جوړ کړ: لیکسر، پارسر، بایت‌کوډ کمپایلر او VM د ۵۰+ بریالیو ازموینو سره.', b3: 'د فاز ۱ تولید چمتو حالت ته ورسید د سمبولیک عملګرانو او اصلي اجراییه فایلونو ملاتړ سره.' },
-    exp2: { title: 'د PLHub پراختیایی چاپیریال · خلاص سرچینه', date: '۲۰۲۴ – ۲۰۲۵', b1: 'مسلکي CLI وسیلې جوړې کړې د ژبې څخه خپلواک امرونو، جوړولو اتومات او ګرم بیا لوډ سره.', b2: 'د Android APK، iOS IPA، Windows EXE او ویب پلیټفارمونو لپاره کراس-پلیټفارم ځایونې وسیلې پلي کړې.', b3: 'د GitHub Actions سره CI/CD یکجا کړ او د Python 3.9-3.12 لپاره اتومات ازموینې کشف جوړ کړ.' },
-    exp3: { title: 'د VS Code توسيعې پرمختګ · خلاص سرچینه', date: '۲۰۲۵', b1: 'د PohLang لپاره د VS Code توسيعه جوړه کړه د نحو روښانتیا، IntelliSense او ۴۰+ کوډ ټوټو سره.', b2: 'د بې له بهرنۍ انحصار څخه یو کلیک اجرا لپاره یوځای شوی رن‌ټایم یکجا کړ.', b3: 'د VS Code بازار ته خپور شو د اتوماتو دندو او ډیبګ تنظیماتو سره.' },
-    exp4: { title: 'د قرآن ریلز جنریتر · خلاص سرچینه', date: '۲۰۲۵ – ۲۰۲۶', b1: 'د Flask بېکنډ، MoviePy پایپلاین او ډېرو قاریانو ملاتړ سره د AI قرآني ویډیو جنریتر جوړ کړ.', b2: 'د PyInstaller، NSIS انسټالر او اتومات GitHub Actions CI/CD خپرونو سره د وینډوز ډیسکټاپ اپ خپور کړ.', b3: 'د Docker، YouTube OAuth اپلوډ او ۸ تولیدي خپرونو سره په Hugging Face Spaces کې ژوندی ویب اپ ځای پر ځای کړ.' },
-    exp5: { title: 'الحق نوښت · ویب پلیټفارم', date: '۲۰۲۵ – ۲۰۲۶', b1: 'د Firebase کوربه توب او PWA وړتیاوو سره ډیر مخیز سازماني ویبسایټ ډیزاین او جوړ کړ.', b2: 'د قرآن لوستونکی، اسلامي کتابتون، انفوګرافیک ګالری او د عطیې سیسټم د اتومات ازموینې سره جوړ کړ.', b3: 'د Cypress E2E ازموینو، Jest یونیټ ازموینو، ESLint او Prettier سره بشپړ CI/CD پلي کړ.' },
-    proj1: { desc: 'د پیلامرو لپاره یوه بشپړه جملوی (انګلیسي ډوله) برنامه لیکنې ژبه چې د اصلي جمع شوي ژبې په توګه ډیزاین شوې، د Rust خپلواک رن‌ټایم، اصلي اجراییه فایلونه او بشپړه خپلواکي لري.' },
-    proj2: { desc: 'د PohLang لپاره رسمي پراختیایی چاپیریال د ژبې څخه خپلواک امرونو، جوړولو اتومات، ازموینې اتومات, ګرم بیا لوډ او مسلکي پروژې کینډۍ سره. لکه Flutter چې د Dart لپاره دی.' },
-    proj3: { desc: 'بشپړه IDE تجربه د نحو روښانتیا، IntelliSense، ۴۰+ کوډ ټوټې، یوځای شوی رن‌ټایم او یو کلیک اجرا سره. جلا ډاونلوډ ته اړتیا نشته، هر څه په یو ځای.' },
-    proj4: { desc: 'د الګوریتمونو او محلي هوش مصنوعي په مرسته د انځورونو او منځپانګو د پټولو اپلیکیشن. په آفلاین ډول د سکرین د نامناسبو برخو د تتولو لپاره د ټینسر فلو لایټ کاروي.' },
-    proj5: { desc: 'د AI قرآني ویډیو جنریتر چې Reels/Shorts/TikTok چمتو منځپانګه د عربي متن، انګلیسي ژباړې، ډېرو قاریانو او متحرک شاليد سره تولیدوي. ویب + وینډوز ډیسکټاپ اپ.' },
-    proj6: { desc: 'د تمرکز او محصولیت لپاره د دیني ډیجیټل محافظت او هوساینې اپلیکیشن. د اپلیکیشن بندولو، د کلیمې فلټر کولو، او منځپانګې اعتدال سره لومړی د محرمیت لپاره د Android غوښتنلیک.' },
-    proj7: { desc: 'بشپړ سازماني ویبسایټ د قرآن لوستونکي، اسلامي کتابتون، انفوګرافیک ګالري، د عطیې سیسټم او Al-Haq Hub اپ لینډینګ پاڼې سره. د Firebase کوربه توب PWA د E2E ازموینې سره.' },
-    proj8: { desc: 'کراس-براوزر توسیع چې د امن محافظتي کڅوړه (د ډومین فلټرونه، د کارن کلیدي ټکي، او د تمرکز مهالوېشونه) کروم، فایرفوکس، او ایج براوزرونو ته لېږدوي.' },
-    btn: { demo: 'ډيمو', docs: 'لاسوندونه', code: 'کوډ', install: 'نصبول', repo: 'ذخیره', readme: 'README', download: 'ډاونلوډ', visit: 'وګورئ', play: 'ګوګل پلی' },
-    contact: { p1: 'پوښتنه لرئ؟ پيغام پرېږدئ، ژر ځواب درکوم.', labelName: 'نوم', phName: 'ستاسو نوم', labelEmail: 'برېښنالیک', phEmail: 'you@example.com', labelMessage: 'پيغام', phMessage: 'څنګه مرسته وکړم؟', btnSend: 'لېږل', btnEmail: 'بریښنالیک', btnFiverr: 'په فایور وګومارئ', success: 'مننه! ستاسو پیغام واستول شو.', error: 'بخښنه، ستونزه رامنځته شوه. مهرباني وکړئ بیا هڅه وکړئ یا مستقیم بریښنالیک واستوئ.', availability: 'شتون', availabilityText: 'د تمام وخت، فريلانس او همکارۍ لپاره چمتو.', location: 'ځای', locationText: 'لرې، نړيوال', elsewhere: 'بل ځای' },
-    footer: { rights: 'ټولې حقوق خوندي دي.', reduceMotion: 'خوځښت کم کړئ' }
+    nav: {
+      about: 'زما په اړه',
+      ventures: 'فعالیتونه',
+      projects: 'محصولات',
+      services: 'خدمات',
+      architecture: 'معماري',
+      experience: 'تجربه',
+      assistant: 'مرستیال',
+      sponsor: 'ملاتړ',
+      contact: 'اړيکه'
+    },
+    hero: {
+      hello: 'بنسټ اېښودونکی او د سیسټمونو مشر معمار',
+      lead: 'د <strong>الحق سټوډیو</strong> او <strong>الحق نوښت</strong> مخکښ معمار. د محلي محرمیت ساتونکو، ۳D واقعي سمولیشنونو، کمپایلر تولچینونو او اسلامي ډیجیټل هوساینې وسیلو انجنیر.',
+      ctaProjects: 'محصولات وپلټئ',
+      ctaServices: 'د پیرودونکو حل لارې',
+      ctaContact: 'اړیکه راسره ونیسئ',
+      ctaEmail: 'مستقیم بریښنالیک',
+      ctaFiverr: 'پر فایور استخدام مې کړئ',
+      meta1: 'انډرایډ، وېب، ډيسکټاپ، توسيعات',
+      meta2: 'محلي لومړی'
+    },
+    kpi: {
+      projects: 'پروژې او اوزارونه',
+      privacy: 'پر دستګاه محرمیت',
+      platforms: 'اصلي عملیاتي سیسټمونه',
+      crypto: 'NIST کریپټوګرافي'
+    },
+    section: {
+      about: { title: 'زما په اړه او فلسفه' },
+      experience: { title: 'انجنیري تجربه او خپرونې' },
+      projects: { title: 'ځانګړي محصولات او راتلونکي پروژې' },
+      contact: { title: 'اړيکه او پوښتنې' }
+    },
+    about: {
+      intro: 'زه یو خپلواک د سیسټمونو انجنیر، سافټویر معمار، او تاریخي څیړونکی یم. زه دوه بشپړونکي نوښتونه پرمخ وړم چې د ډیجیټل حاکمیت، اخلاقي هوساینې، او خلاصو ټولنیزو وسیلو د ودې لپاره ډیزاین شوي:',
+      li1: '<strong>محلي سیسټمونه:</strong> د شبکې پاکټونو محلي پلټنه، محلي بصري AI، او صفر-ټیلیمټري په انډرایډ، وېب توسيعاتو او ډېسکټاپ کې.',
+      li2: '<strong>واقعي سمولیشن:</strong> Three.js r185 ۳D تجربه د فضايي پروسیجرل وېب غږونو او پټو سټیګانوګرافیک مهرونو سره.',
+      li3: '<strong>د ژبې او کمپایلر ډیزاین:</strong> د بایټ‌کوډ کمپایلرونه، لغوي تحلیل کوونکي، او Rust رن‌ټایم د طبیعي عبارتي ژبې لپاره.',
+      li4: '<strong>ټولنیزه ډیجیټل هوساینه:</strong> په بشپړه توګه وړیا اسلامي اوزارونه، د تلاوت غږیز AI فیډبیک، او کره تاریخي څېړنې.',
+      outro: 'ټول کوډبیسونه د پرمختللي ریاضیاتي جوړښت (NIST P-256 ECDSA آفلاین تصدیق، د PostgreSQL RLS امنیت) سره یوځای اسانه او له ګډوډۍ پرته کاروونکي تجربه برابروي.'
+    },
+    ventures: {
+      eyebrow: 'سازماني چوکاټ',
+      title: 'د ایکوسیستم دوه اصلي ستنې',
+      lead: 'د سوداګریز سایبري امنیت سافټویر جوړونې او خپلواکې ټولنیزې ډیجیټل هوساینې ترمنځ پله جوړول.',
+      studioSubtitle: 'سوداګریز سافټویر انجنیري • UK Sole Trader',
+      studioDesc: 'سوداګریز انجنیري او پرمختیایي سټوډیو. د لوړ کیفیت انډرایډ غوښتنلیکونه، بې روټه محلي فایروالونه، ۳D فضايي سمولیشنونه او د صفر پوهې کریپټوګرافیک سیسټمونه جوړوي.',
+      initiativeSubtitle: 'ټولنیزه ډیجیټل هوساینه • شخصي ماموریت',
+      initiativeDesc: 'یو شخصي ډیجیټل نوښت چې ۱۰۰٪ وړیا معنوي اوزارونه، د اصلي سرچینو څېړنې او اسلامي ښوونیز پلیټفارمونه وړاندې کوي.'
+    },
+    projects: {
+      eyebrow: 'بشپړ پورټفولیو',
+      lead: 'تولیدي خپرونې، د خلاصې سرچینې ټولنیز اوزارونه، د کمپایلر معمارۍ، او راتلونکي R&D پایپلاینونه.'
+    },
+    services: {
+      eyebrow: 'مسلکي خدمتونه',
+      title: 'سوداګریز خدمتونه او د پیرودونکو حل لارې',
+      lead: 'د <strong>الحق سټوډیو</strong> تر چتر لاندې د لوړ کیفیت انجنیري خدمتونه. دودیزه معماري، امنیتي پلټنې، او تولیدي سافټویر.',
+      ctaConsult: 'د همکارۍ په اړه پوښتنه وکړئ'
+    },
+    arch: {
+      eyebrow: 'تخنیکي مهارت',
+      title: 'د سیسټمونو معماري او ټکنالوژي',
+      lead: 'د پروګرامینګ ژبو، سیسټم رن‌ټایمونو، ګرافیک چوکاټونو او امنیتي طبقو یوه هراړخیزه عمومي کتنه.'
+    },
+    exp: {
+      eyebrow: 'انجنیري پړاوونه',
+      lead: 'مهم تولیدي خپرونې، د خلاصې سرچینې پړاوونه او معماري استقرارونه.'
+    },
+    exp6: {
+      title: 'AmniGuard فایروال او NetBlock • الحق سټوډیو',
+      date: '۲۰۲۶',
+      b1: 'د لوړ سرعت Android VpnService فایروال ډیزاین کړ چې ۱۰۰٪ ترافیک په محلي ډول پر دستګاه پروسس کوي بې له کلاوډ ټیلیمټري.',
+      b2: 'د ۸۰،۰۰۰+ غیر اخلاقي ډومینونو سنک هول، د پورټ ۸۵۳ DoT پلي کول او د ژوندي PCAP کڅوړو ثبتول جوړ کړل.',
+      b3: 'د GNU GPLv3 لاندې د NIST P-256 ECDSA آفلاین تصدیق سره خپور شو.'
+    },
+    exp7: {
+      title: 'Platen: ۳D ټایپ رایټر • الحق سټوډیو',
+      date: '۲۰۲۶',
+      b1: 'په Three.js r185 کې د ۳D میخانیکي ټایپ رایټر سمولیشن د پروسیجرل فضايي وېب غږونو سره جوړ کړ.',
+      b2: 'د بشري لیکنې تصدیق لپاره په ۶۰ FPS کې د تڼیو کېکاږلو چټکتیا ټیلیمټري پلي کړه.',
+      b3: 'په PDF، Word، HTML او Markdown کې نه لیدل کېدونکي کریپټوګرافیک واټر مارکونه یکجا کړل.'
+    },
+    exp4: {
+      title: 'د قرآن ریلز جنریتر • خلاص سرچینه',
+      date: '۲۰۲۵ – ۲۰۲۶',
+      b1: 'د Flask بېکنډ، MoviePy پایپلاین او ډېرو قاریانو ملاتړ سره د اتومات قرآني ویډیو جنریتر جوړ کړ.',
+      b2: 'د PyInstaller، NSIS انسټالر او اتومات GitHub Actions CI/CD خپرونو سره د وینډوز ډیسکټاپ اپ خپور کړ.',
+      b3: 'د Docker او YouTube OAuth وړتیاوو سره په Hugging Face Spaces کې ژوندی ویب اپ ځای پر ځای کړ.'
+    },
+    exp5: {
+      title: 'الحق نوښت • ویب پلیټفارم',
+      date: '۲۰۲۵ – ۲۰۲۶',
+      b1: 'د Firebase کوربه توب او PWA وړتیاوو سره ډیر مخیز سازماني ویبسایټ ډیزاین او جوړ کړ.',
+      b2: 'د قرآن لوستونکی، اسلامي کتابتون او د عطیې سیسټم د اتومات ازموینې سره جوړ کړ.',
+      b3: 'د لینکونو بشپړتیا او د پای څخه تر پایه سموک ازموینو سره اتومات ټیسټ سوټ پلي کړ.'
+    },
+    exp1: {
+      title: 'PohLang او PLHub • د ژبې انجنیري',
+      date: '۲۰۲۴ – ۲۰۲۵',
+      b1: 'د پیلامرو لپاره د Rust رن‌ټایم سره یوه بشپړه جملوی برنامه لیکنې ژبه ډیزاین او پلي کړه.',
+      b2: 'بشپړ کمپایلر تولچین جوړ کړ: لیکسر، پارسر، بایت‌کوډ کمپایلر او VM د ۵۰+ بریالیو ازموینو سره.',
+      b3: 'د PLHub چاپیریال او د VS Code مارکیټ لپاره رسمي توسيعه خپره کړه.'
+    },
+    sponsor: {
+      title: 'د خپلواکې انجنیرۍ او څېړنو ملاتړ',
+      copy: 'د یوه خپلواک انجنیر او لیکوال په توګه، زه د <strong>الحق سټوډیو</strong> او <strong>الحق نوښت</strong> له لارې د خلاصې سرچینې او محرمیت اوزارونه جوړوم. ستاسو ملاتړ سرورونه او بې اعلانه ټولنیز اوزارونه تمویلوي.',
+      note: 'د حبیب مخلص (حبیب الرحمن) شخصي ټولنیز نوښت (UK sole trader). خیریه یا ثبت شوی خیریه بنسټ نه دی.'
+    },
+    assistant: {
+      title: 'د الحق AI مرستیال څخه وپوښتئ',
+      desc: 'دا هوښیار مرستیال د دې پورټفولیو، محصولاتو (AmniGuard, AmniShield, Platen, AmniSpace)، خدماتو او د الحق نوښت د کتابتون په اړه پوښتنو ته ځواب وايي.'
+    },
+    btn: {
+      demo: 'ډيمو',
+      docs: 'لاسوندونه',
+      code: 'کوډ',
+      install: 'نصبول',
+      repo: 'ذخیره',
+      readme: 'README',
+      download: 'ډاونلوډ',
+      visit: 'وګورئ',
+      play: 'ګوګل پلی'
+    },
+    contact: {
+      p1: 'پوښتنه یا پروژه لرئ؟ پیغام پرېږدئ، ژر ځواب درکوم.',
+      labelName: 'نوم',
+      phName: 'ستاسو نوم',
+      labelEmail: 'برېښنالیک',
+      phEmail: 'you@example.com',
+      labelMessage: 'پيغام',
+      phMessage: 'څنګه مرسته وکړم؟',
+      btnSend: 'پیغام واستوئ',
+      btnEmail: 'مستقیم بریښنالیک',
+      btnFiverr: 'په فایور وګومارئ',
+      success: 'مننه! ستاسو پیغام واستول شو.',
+      error: 'بخښنه، ستونزه رامنځته شوه. مهرباني وکړئ بیا هڅه وکړئ یا مستقیم بریښنالیک واستوئ.',
+      availability: 'شتون',
+      availabilityText: 'د تمام وخت معماري رولونو، قراردادونو او ځانګړو پروژو لپاره چمتو.',
+      location: 'ځای',
+      locationText: 'برتانیه (لرې، نړيوال)',
+      elsewhere: 'ایکوسیستم لینکونه'
+    },
+    footer: {
+      rights: 'ټولې حقوق خوندي دي.',
+      reduceMotion: 'خوځښت کم کړئ'
+    }
   },
   fa: {
     skip: 'پرش به محتوا',
-    nav: { about: 'درباره من', experience: 'تجربه', projects: 'پروژه‌ها', contact: 'ارتباط' },
-    hero: { hello: 'سلام، من', lead: 'بنیان‌گذار الحق استودیو و ابتکار الحق. توسعه‌دهندهٔ یاری‌شده با هوش مصنوعی برای ساخت اپ‌های اندروید، افزونه‌های مرورگر و کامپایلرهای بومی.', ctaProjects: 'مشاهده پروژه‌ها', ctaContact: 'تماس با من', ctaFiverr: 'در Fiverr من را استخدام کنید', ctaEmail: 'ارسال ایمیل', meta1: 'اندروید، وب، دسکتاپ، افزونه‌ها', meta2: 'یاری‌شده با هوش مصنوعی' },
-    section: { about: { title: 'درباره' }, experience: { title: 'تجربه' }, projects: { title: 'پروژه‌های ویژه' }, contact: { title: 'ارتباط' } },
-    about: { intro: 'من بنیان‌گذار الحق استودیو و ابتکار الحق هستم. من توسعه‌دهنده‌ای متخصص در نرم‌افزارهای آفلاین‌محور و حریم‌خصوصی‌محور هستم. من می‌سازم:', li1: 'اپلیکیشن‌های بومی اندروید و مجموعه‌های حفاظتی (Kotlin, Java)', li2: 'وب‌سایت‌های مدرن واکنش‌گرا و برنامه‌های وب استاتیک', li3: 'افزونه‌های حرفه‌ای مرورگر', outro: 'ماموریت من ساخت نرم‌افزارهایی است که به جامعه خدمت کنند، از تمرکز کاربران محافظت نمایند و با سلامت معنوی همسو باشند.' },
-    exp1: { title: 'توسعه زبان PohLang · متن‌باز', date: '۲۰۲۴ – ۲۰۲۵', b1: 'طراحی و پیاده‌سازی یک زبان برنامه‌نویسی عبارتی برای مبتدیان با رانتایم Rust.', b2: 'ساخت زنجیره ابزار کامل کامپایلر: تحلیل‌گر واژگانی، تحلیل‌گر نحوی، کامپایلر بایت‌کد و ماشین مجازی با ۵۰+ تست موفق.', b3: 'دستیابی به وضعیت آماده تولید فاز ۱ با عملگرهای نمادین و پشتیبانی فایل اجرایی بومی.' },
-    exp2: { title: 'محیط توسعه PLHub · متن‌باز', date: '۲۰۲۴ – ۲۰۲۵', b1: 'ساخت ابزار CLI حرفه‌ای با دستورات مستقل از زبان، اتوماسیون ساخت و بارگذاری مجدد فوری.', b2: 'پیاده‌سازی ابزارهای استقرار چندسکویی برای Android APK، iOS IPA، Windows EXE و پلتفرم‌های وب.', b3: 'ایجاد یکپارچگی CI/CD با GitHub Actions و کشف خودکار تست برای Python 3.9-3.12.' },
-    exp3: { title: 'توسعه افزونه VS Code · متن‌باز', date: '۲۰۲۵', b1: 'توسعه افزونه VS Code با برجسته‌سازی نحو، IntelliSense و ۴۰+ قطعه کد برای PohLang.', b2: 'یکپارچه‌سازی رانتایم داخلی برای اجرای یک کلیکی بدون وابستگی خارجی.', b3: 'انتشار در بازار VS Code با تسک‌های خودکار و پیکربندی‌های دیباگ.' },
-    exp4: { title: 'ژنراتور ریلز قرآن · متن‌باز', date: '۲۰۲۵ – ۲۰۲۶', b1: 'ساخت ژنراتور ویدیوی قرآنی با هوش مصنوعی با بکند Flask، پایپلاین MoviePy و پشتیبانی چند قاری.', b2: 'انتشار اپ دسکتاپ ویندوز با PyInstaller، نصب‌کننده NSIS و انتشارات خودکار CI/CD GitHub Actions.', b3: 'استقرار اپ وب زنده در Hugging Face Spaces با Docker، آپلود YouTube OAuth و ۸ انتشار تولیدی.' },
-    exp5: { title: 'ابتکار الحق · پلتفرم وب', date: '۲۰۲۵ – ۲۰۲۶', b1: 'طراحی و توسعه وبسایت سازمانی چند صفحه‌ای با میزبانی Firebase و قابلیت‌های PWA.', b2: 'ساخت قاری قرآن، کتابخانه اسلامی، گالری اینفوگرافیک و سیستم اهدا با تست خودکار.', b3: 'پیاده‌سازی CI/CD کامل با تست‌های E2E Cypress، تست‌های واحد Jest، ESLint و Prettier.' },
-    proj1: { desc: 'یک زبان برنامه‌نویسی کاملاً عبارتی (انگلیسی‌وار) برای مبتدیان، طراحی‌شده به‌عنوان یک زبان کامپایل شده واقعی با رانتایم مستقل Rust، فایل‌های اجرایی بومی و استقلال کامل.' },
-    proj2: { desc: 'محیط توسعه رسمی برای PohLang با دستورات مستقل از زبان، اتوماسیون ساخت, اتوماسیون تست، بارگذاری مجدد فوری و قالب‌های حرفه‌ای پروژه. مانند Flutter برای Dart.' },
-    proj3: { desc: 'تجربه کامل IDE با برجسته‌سازی نحو، IntelliSense، ۴۰+ قطعه کد، رانتایم یکپارچه و اجرای یک کلیکی. نیاز به دانلود جداگانه ندارد، همه‌چیز در یک جا.' },
-    proj4: { desc: 'مجموعه حفاظت بصری با استفاده از هوش مصنوعی درون‌دستگاهی. اپلیکیشن اندروید آفلاین‌محور برای شناسایی و شطرنجی کردن خودکار تصاویر نامناسب با هوش مصنوعی محلی.' },
-    proj5: { desc: 'ژنراتور ویدیوی قرآنی با هوش مصنوعی که محتوای آماده Reels/Shorts/TikTok با متن عربی، ترجمه انگلیسی، چند قاری و پس‌زمینه‌های پویا تولید می‌کند. وب + اپ دسکتاپ ویندوز.' },
-    proj6: { desc: 'مجموعه حفاظت دیجیتال و بهداشت متناسب با ایمان برای تمرکز و بهره‌وری. اپلیکیشن اندروید با اولویت حریم خصوصی، مسدود کردن برنامه‌ها، فیلتر کردن کلمات کلیدی و تعدیل محتوا.' },
-    proj7: { desc: 'وبسایت سازمانی کامل با قاری قرآن، کتابخانه اسلامی، گالری اینفوگرافیک، سیستم اهدا و صفحه فرود اپ Al-Haq Hub. PWA میزبانی Firebase با تست E2E.' },
-    proj8: { desc: 'افزونه چندمرورگره برای انتقال خدمات حفاظتی امن (فیلترهای دامنه، کلمات کلیدی دلخواه و زمان‌بندی‌های تمرکز) به مرورگرهای کروم، فایرفاکس و اج.' },
-    btn: { demo: 'دمو', docs: 'مستندات', code: 'کد', install: 'نصب', repo: 'مخزن', readme: 'README', download: 'دانلود', visit: 'بازدید', play: 'گوگل پلی' },
-    contact: { p1: 'سوالی دارید یا می‌خواهید همکاری کنیم؟ پیام بگذارید تا پاسخ دهم.', labelName: 'نام', phName: 'نام شما', labelEmail: 'ایمیل', phEmail: 'you@example.com', labelMessage: 'پیام', phMessage: 'چطور کمک کنم؟', btnSend: 'ارسال', btnEmail: 'ایمیل بدهید', btnFiverr: 'استخدام از فایور', success: 'ممنون! پیام شما ارسال شد.', error: 'متاسفیم، مشکلی پیش آمد. لطفا دوباره تلاش کنید یا مستقیم ایمیل بدهید.', availability: 'دسترس‌پذیری', availabilityText: 'آماده برای تمام‌وقت، فریلنس و همکاری.', location: 'موقعیت', locationText: 'دورکاری، جهانی', elsewhere: 'سایر' },
-    footer: { rights: 'کلیه حقوق محفوظ است.', reduceMotion: 'کاهش پویانمایی' }
+    nav: {
+      about: 'درباره من',
+      ventures: 'پروژه‌ها و سازمان‌ها',
+      projects: 'محصولات',
+      services: 'خدمات',
+      architecture: 'معماری',
+      experience: 'تجربه',
+      assistant: 'دستیار',
+      sponsor: 'حمایت',
+      contact: 'ارتباط'
+    },
+    hero: {
+      hello: 'بنیان‌گذار و معمار ارشد سیستم‌ها',
+      lead: 'معمار ارشد <strong>استودیو الحق</strong> و <strong>ابتکار الحق</strong>. مهندسی محافظان محلی حریم خصوصی، شبیه‌سازی‌های سه‌بعدی تعاملی، زنجیره ابزار کامپایلر و ابزارهای رفاه دیجیتال اسلامی.',
+      ctaProjects: 'کاوش محصولات',
+      ctaServices: 'راهکارهای تجاری',
+      ctaContact: 'تماس با من',
+      ctaEmail: 'ایمیل مستقیم',
+      ctaFiverr: 'در Fiverr من را استخدام کنید',
+      meta1: 'اندروید، وب، دسکتاپ، افزونه‌ها',
+      meta2: 'محلی‌محور'
+    },
+    kpi: {
+      projects: 'پروژه‌ها و ابزارها',
+      privacy: 'حریم خصوصی درون‌دستگاهی',
+      platforms: 'سیستم‌عامل‌های اصلی',
+      crypto: 'رمزنگاری NIST'
+    },
+    section: {
+      about: { title: 'درباره من و فلسفه' },
+      experience: { title: 'تجربه مهندسی و انتشارات' },
+      projects: { title: 'محصولات برجسته و پروژه‌های آتی' },
+      contact: { title: 'ارتباط و پرسش‌ها' }
+    },
+    about: {
+      intro: 'من یک مهندس سیستم مستقل، معمار نرم‌افزار و پژوهشگر تاریخی هستم. من دو بخش مکمل را برای پیشبرد حاکمیت دیجیتال، سلامت اخلاقی و ابزارهای متن‌باز جامعه هدایت می‌کنم:',
+      li1: '<strong>سیستم‌های محلی‌محور:</strong> بازرسی بسته‌های شبکه درون‌دستگاهی، هوش مصنوعی بصری محلی، و عدم ردیابی کامل در اندروید، افزونه‌ها و دسکتاپ.',
+      li2: '<strong>شبیه‌سازی واقعی:</strong> تجارب سه‌بعدی WebGL با Three.js r185، صوت فضایی رویه‌ای و اصالت‌سنجی پنهان‌نگاری.',
+      li3: '<strong>طراحی زبان و کامپایلر:</strong> کامپایلرهای بایت‌کد اختصاصی، تحلیل‌گرهای لغوی، و رانتایم Rust برای سینتکس بیانی روان.',
+      li4: '<strong>رفاه دیجیتال جامعه:</strong> ابزارهای کاملاً رایگان بهره‌وری اسلامی، تحلیل صوتی هوشمند قرائت و رساله‌های پژوهشی مستند.',
+      outro: 'تمام کدبیس‌ها توازن دقیقی میان معماری ریاضیاتی (تأیید آفلاین NIST P-256 ECDSA و امنیت PostgreSQL RLS) و تجربه کاربری آرام برقرار می‌کنند.'
+    },
+    ventures: {
+      eyebrow: 'ماتریس سازمانی',
+      title: 'دو رکن بنیادین اکوسیستم',
+      lead: 'پیوند مهندسی امنیت سایبری تجاری با خدمات رفاه دیجیتال مستقل برای جامعه.',
+      studioSubtitle: 'مهندسی نرم‌افزار تجاری • UK Sole Trader',
+      studioDesc: 'استودیوی مهندسی و توسعه تجاری. توسعه اپلیکیشن‌های اندروید، فایروال‌های محلی بدون روت، شبیه‌سازی‌های سه‌بعدی و سیستم‌های رمزنگاری با دانش صفر.',
+      initiativeSubtitle: 'رفاه دیجیتال جامعه • ماموریت فردی',
+      initiativeDesc: 'یک ماموریت دیجیتال مستقل که ابزارهای معنوی ۱۰۰٪ رایگان، پژوهش‌های مستند تاریخی و بسترهای آموزشی اسلامی را ارائه می‌دهد.'
+    },
+    projects: {
+      eyebrow: 'پورتفولیوی جامع',
+      lead: 'محصولات تجاری، ابزارهای متن‌باز جامعه، معماری‌های کامپایلر و برنامه‌های تحقیق و توسعه نسل بعد.'
+    },
+    services: {
+      eyebrow: 'همکاری‌های حرفه‌ای',
+      title: 'خدمات تجاری و راهکارهای مشتریان',
+      lead: 'خدمات مهندسی دقیق تحت <strong>استودیو الحق</strong> (UK sole trader). معماری سفارشی، ممیزی امنیتی و نرم‌افزارهای تجاری.',
+      ctaConsult: 'درخواست مشاوره و همکاری'
+    },
+    arch: {
+      eyebrow: 'تسلط فنی',
+      title: 'معماری سیستم‌ها و پشته فناوری',
+      lead: 'بررسی جامع زبان‌های برنامه‌نویسی، رانتایم‌های سیستمی، فریم‌ورک‌های گرافیکی و لایه‌های امنیتی.'
+    },
+    exp: {
+      eyebrow: 'نقاط عطف مهندسی',
+      lead: 'عرضه محصولات کلیدی، نقاط عطف متن‌باز و استقرارهای معماری.'
+    },
+    exp6: {
+      title: 'فایروال و نت‌بلاک AmniGuard • استودیو الحق',
+      date: '۲۰۲۶',
+      b1: 'توسعه فایروال Android VpnService با پردازش ۱۰۰٪ بسته‌ها روی دستگاه بدون ارسال اطلاعات به کلود.',
+      b2: 'ایجاد مسدودکننده ۸۰،۰۰۰+ دامنه غیراخلاقی، پورت ۸۵۳ DoT و ضبط زنده بسته‌های PCAP وایرشارک.',
+      b3: 'انتشار متن‌باز تحت GNU GPLv3 با اعتبارسنجی رمزنگاری آفلاین NIST P-256 ECDSA.'
+    },
+    exp7: {
+      title: 'Platen: ماشین تحریر سه‌بعدی • استودیو الحق',
+      date: '۲۰۲۶',
+      b1: 'شبیه‌ساز ماشین تحریر مکانیکی سه‌بعدی با Three.js r185 و سنتز صدای فضایی تحت وب.',
+      b2: 'ثبت توالی تایپ کلیدها در ۶۰ فریم بر ثانیه برای اثبات نگارش توسط انسان.',
+      b3: 'تعبیه واترمارک‌های نامرئی رمزنگاری در خروجی‌های PDF، Word، HTML و Markdown.'
+    },
+    exp4: {
+      title: 'ژنراتور ریلز قرآن • متن‌باز',
+      date: '۲۰۲۵ – ۲۰۲۶',
+      b1: 'ساخت ژنراتور ویدیوی قرآنی با هوش مصنوعی با بکند Flask، پایپلاین MoviePy و پشتیبانی چند قاری.',
+      b2: 'انتشار اپ دسکتاپ ویندوز با PyInstaller، نصب‌کننده NSIS و انتشارات خودکار CI/CD GitHub Actions.',
+      b3: 'استقرار اپ وب زنده در Hugging Face Spaces با Docker و قابلیت‌های آپلود YouTube OAuth.'
+    },
+    exp5: {
+      title: 'ابتکار الحق • پلتفرم وب',
+      date: '۲۰۲۵ – ۲۰۲۶',
+      b1: 'طراحی و توسعه وبسایت سازمانی چند صفحه‌ای با میزبانی Firebase و قابلیت‌های PWA.',
+      b2: 'ساخت قاری قرآن، کتابخانه اسلامی و سیستم اهدا با تست خودکار.',
+      b3: 'پیاده‌سازی مجموعه تست خودکار با بررسی یکپارچگی لینک‌ها و تست‌های دود.'
+    },
+    exp1: {
+      title: 'PohLang و PLHub • مهندسی زبان‌های برنامه‌نویسی',
+      date: '۲۰۲۴ – ۲۰۲۵',
+      b1: 'طراحی و پیاده‌سازی PohLang، یک زبان برنامه‌نویسی عبارتی با رانتایم مستقل Rust.',
+      b2: 'ساخت زنجیره ابزار کامل کامپایلر: تحلیل‌گر واژگانی، تحلیل‌گر نحوی، کامپایلر بایت‌کد و ماشین مجازی.',
+      b3: 'ساخت محیط توسعه PLHub و انتشار افزونه رسمی در فروشگاه VS Code.'
+    },
+    sponsor: {
+      title: 'حمایت از مهندسی و پژوهش‌های مستقل',
+      copy: 'به عنوان یک مهندس نرم‌افزار و پژوهشگر مستقل، ابزارهای متن‌باز و حریم خصوصی را از طریق <strong>استودیو الحق</strong> و <strong>ابتکار الحق</strong> می‌سازم. حمایت شما زیرساخت‌های سرور و ابزارهای بدون تبلیغات را تقویت می‌کند.',
+      note: 'ابتکار فردی توسط حبیب مخلص (حبیب الرحمن) (UK sole trader). خیریه یا تراست ثبت‌شده نیست.'
+    },
+    assistant: {
+      title: 'پرسش از دستیار هوشمند الحق',
+      desc: 'دستیار هوش مصنوعی به سوالات مربوط به این پورتفولیو، محصولات (AmniGuard, AmniShield, Platen, AmniSpace)، خدمات و کتابخانه پاسخ می‌دهد.'
+    },
+    btn: {
+      demo: 'دمو',
+      docs: 'مستندات',
+      code: 'کد',
+      install: 'نصب',
+      repo: 'مخزن',
+      readme: 'README',
+      download: 'دانلود',
+      visit: 'بازدید',
+      play: 'گوگل پلی'
+    },
+    contact: {
+      p1: 'پروژه، ممیزی امنیتی یا سوالی دارید؟ پیام بگذارید تا سریعاً پاسخ دهم.',
+      labelName: 'نام',
+      phName: 'نام شما',
+      labelEmail: 'ایمیل',
+      phEmail: 'you@example.com',
+      labelMessage: 'پیام',
+      phMessage: 'چطور کمک کنم؟',
+      btnSend: 'ارسال پیام',
+      btnEmail: 'ایمیل مستقیم',
+      btnFiverr: 'استخدام از فایور',
+      success: 'ممنون! پیام شما ارسال شد.',
+      error: 'متاسفیم، مشکلی پیش آمد. لطفا دوباره تلاش کنید یا مستقیم ایمیل بدهید.',
+      availability: 'دسترس‌پذیری',
+      availabilityText: 'آماده برای نقش‌های معماری تمام‌وقت، قراردادهای مهندسی و پروژه‌های اختصاصی.',
+      location: 'موقعیت',
+      locationText: 'بریتانیا (دورکاری، جهانی)',
+      elsewhere: 'پیوندهای اکوسیستم'
+    },
+    footer: {
+      rights: 'کلیه حقوق محفوظ است.',
+      reduceMotion: 'کاهش پویانمایی'
+    }
   }
 };
 
@@ -159,7 +573,13 @@ function applyLang(lang) {
   $$('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
     const value = key.split('.').reduce((acc, k) => (acc ? acc[k] : undefined), dict[lang]);
-    if (typeof value === 'string') el.textContent = value;
+    if (typeof value === 'string') {
+      if (value.includes('<') || value.includes('&')) {
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
   });
   // Placeholders
   $$('[data-i18n-placeholder]').forEach((el) => {
@@ -171,7 +591,7 @@ function applyLang(lang) {
 }
 
 function getLang() {
-  return localStorage.getItem(langKey) || (navigator.language || 'en').slice(0,2);
+  return localStorage.getItem(langKey) || (navigator.language || 'en').slice(0, 2);
 }
 
 // tiny translator helper
@@ -183,8 +603,7 @@ function t(key, lang = getLang()) {
 
 // Initialize language
 let detected = getLang();
-if (!['en','ps','fa'].includes(detected)) {
-  // Map some common locale codes
+if (!['en', 'ps', 'fa'].includes(detected)) {
   if (detected.startsWith('fa')) detected = 'fa';
   else if (detected.startsWith('ps')) detected = 'ps';
   else detected = 'en';
@@ -197,7 +616,6 @@ if (langSelect) {
   langSelect.addEventListener('change', (e) => {
     const value = e.target.value;
     applyLang(value);
-    // keep selector in sync if language changed elsewhere
     langSelect.value = value;
   });
 }
@@ -207,14 +625,13 @@ function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
   const status = document.getElementById('formStatus');
-  // Use endpoint from form action
   const endpoint = form.getAttribute('action');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (status) { status.textContent = ''; status.className = 'form__status'; }
     const btn = form.querySelector('button[type="submit"]');
     const prev = btn ? btn.textContent : '';
-    if (btn) { btn.disabled = true; btn.textContent = (t('section.contact.title') ? t('contact.btnSend') : 'Send') + '…'; }
+    if (btn) { btn.disabled = true; btn.textContent = (t('contact.btnSend') || 'Send') + '…'; }
     try {
       const data = new FormData(form);
       const res = await fetch(endpoint, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
@@ -236,7 +653,7 @@ function initContactForm() {
 initContactForm();
 
 // Email obfuscation: bind click to elements with .email-link and construct mailto at runtime
-(function initEmailLinks(){
+(function initEmailLinks() {
   const user = 'habibmukhlis2006';
   const domain = 'gmail.com';
   const subject = encodeURIComponent('Portfolio inquiry');
@@ -250,7 +667,7 @@ initContactForm();
   });
 })();
 
-// Move SW registration here to avoid inline script
+// Service Worker registration
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js').catch(() => {}));
 }
