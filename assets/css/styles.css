@@ -96,6 +96,10 @@ a { color: hsl(var(--text)); text-decoration: none; }
 .container { width: min(100% - 2rem, var(--container)); margin-inline: auto; }
 .section { padding: clamp(4rem, 6vw, 6.5rem) 0; } /* Balanced margins */
 
+.assistant-card { max-width: 860px; margin-inline: auto; }
+.assistant-card > p { color: hsl(var(--text-2)); max-width: 68ch; }
+.assistant-card iframe { width: 100%; min-height: 620px; border: 1px solid hsl(var(--border)); border-radius: var(--radius-lg); background: hsl(var(--surface)); }
+
 .skip-link { position: absolute; left: -9999px; }
 .skip-link:focus { left: 1rem; top: 1rem; background: hsl(var(--surface)); color: hsl(var(--text)); padding: .6rem .9rem; border-radius: var(--radius); }
 
