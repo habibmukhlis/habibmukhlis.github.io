@@ -760,12 +760,17 @@ html[dir="rtl"] .service-bullets li {
   .kpi-bar { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
 }
 
+/* Suppress any third-party floating widgets that collide with Assistant */
+#bmc-wbtn, iframe[src*="buymeacoffee.com/widget"] {
+  display: none !important;
+}
+
 /* Floating AI Assistant Widget */
 #alhaq-chatbot-launcher {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  z-index: 9998;
+  z-index: 10000;
   border: none;
   border-radius: 9999px;
   width: 58px;
