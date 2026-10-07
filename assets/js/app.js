@@ -335,8 +335,8 @@ const dict = {
     },
     sponsor: {
       title: 'Support Independent Engineering & Research',
-      copy: 'As an independent software engineer and author, I build open-source tools, sovereign privacy utilities, and educational platforms through <strong>Al-Haq Studio</strong> and <strong>Al-Haq Initiative</strong>. Your sponsorship fuels server infrastructure, open research, and ad-free community software.',
-      note: 'Personal community initiative by Habib Mukhlis (Habibur Rahman) (UK sole trader). Not a registered charity or corporate trust.'
+      copy: 'As an independent software engineer and author, I build open-source tools, sovereign privacy utilities, and educational platforms through Al-Haq Studio and Al-Haq Initiative. Your sponsorship fuels server infrastructure, open research, and ad-free community software.',
+      note: 'Al-Haq Studio is operated by Habib Mukhlis (Habibur Rahman), a UK sole trader. Al-Haq Initiative is a community and research project, not a registered charity.'
     },
     assistant: {
       title: 'Ask the Al-Haq Assistant',
@@ -486,8 +486,8 @@ const dict = {
     },
     sponsor: {
       title: 'د خپلواکې انجنیرۍ او څېړنو ملاتړ',
-      copy: 'د یوه خپلواک انجنیر او لیکوال په توګه، زه د <strong>الحق سټوډیو</strong> او <strong>الحق نوښت</strong> له لارې د خلاصې سرچینې او محرمیت اوزارونه جوړوم. ستاسو ملاتړ سرورونه او بې اعلانه ټولنیز اوزارونه تمویلوي.',
-      note: 'د حبیب مخلص (حبیب الرحمن) شخصي ټولنیز نوښت (UK sole trader). خیریه یا ثبت شوی خیریه بنسټ نه دی.'
+      copy: 'د یوه خپلواک انجنیر او لیکوال په توګه، زه د الحق سټوډیو او الحق نوښت له لارې د خلاصې سرچینې او محرمیت اوزارونه جوړوم. ستاسو ملاتړ سرورونه او بې اعلانه ټولنیز اوزارونه تمویلوي.',
+      note: 'الحق سټوډیو د حبیب مخلص (حبیب الرحمن) له خوا د UK sole trader په توګه اداره کېږي. د الحق نوښت ټولنیزه او څېړنیزه پروژه ده، ثبت شوې خیریه نه ده.'
     },
     assistant: {
       title: 'د الحق AI مرستیال څخه وپوښتئ',
@@ -637,8 +637,8 @@ const dict = {
     },
     sponsor: {
       title: 'حمایت از مهندسی و پژوهش‌های مستقل',
-      copy: 'به عنوان یک مهندس نرم‌افزار و پژوهشگر مستقل، ابزارهای متن‌باز و حریم خصوصی را از طریق <strong>استودیو الحق</strong> و <strong>ابتکار الحق</strong> می‌سازم. حمایت شما زیرساخت‌های سرور و ابزارهای بدون تبلیغات را تقویت می‌کند.',
-      note: 'ابتکار فردی توسط حبیب مخلص (حبیب الرحمن) (UK sole trader). خیریه یا تراست ثبت‌شده نیست.'
+      copy: 'به عنوان یک مهندس نرم‌افزار و پژوهشگر مستقل، ابزارهای متن‌باز و حریم خصوصی را از طریق استودیو الحق و ابتکار الحق می‌سازم. حمایت شما زیرساخت‌های سرور و ابزارهای بدون تبلیغات را تقویت می‌کند.',
+      note: 'الحق استودیو توسط حبیب مخلص (حبیب الرحمن) به‌عنوان یک UK sole trader اداره می‌شود. ابتکار الحق یک پروژه اجتماعی و پژوهشی است، نه خیریه ثبت‌شده.'
     },
     assistant: {
       title: 'پرسش از دستیار هوشمند الحق',
@@ -789,3 +789,4 @@ initContactForm();
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js').catch(() => {}));
 }
+
