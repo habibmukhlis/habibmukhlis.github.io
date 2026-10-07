@@ -79,10 +79,18 @@ if ('IntersectionObserver' in window) {
       e.target.classList.add('is-visible');
       io.unobserve(e.target);
     }
-  }, { threshold: 0.15 });
+  }, { threshold: 0, rootMargin: '0px 0px 120px 0px' });
   revealEls.forEach((el) => io.observe(el));
 } else {
   revealEls.forEach((el) => el.classList.add('is-visible'));
+}
+
+// The project grid is long and contains its own interactive filters. Reveal its
+// cards individually so a missed observer event on the parent cannot hide every
+// project on smaller screens or after a filter change.
+const projectGrid = $('.project-grid');
+if (projectGrid) {
+  projectGrid.classList.add('is-visible');
 }
 
 // Project category filtering
@@ -98,7 +106,7 @@ $$('.filter-btn').forEach((btn) => {
     $$('.project').forEach((card) => {
       const cat = card.getAttribute('data-category');
       const matches = (filter === 'all' || cat === filter);
-      card.style.display = matches ? '' : 'none';
+      card.hidden = !matches;
     });
   });
 });
