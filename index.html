@@ -257,11 +257,11 @@
 
         <!-- Filter Controls -->
         <div class="filter-bar" data-reveal>
-          <button type="button" class="filter-btn active" data-filter="all">All (15)</button>
-          <button type="button" class="filter-btn" data-filter="studio">Flagship Studio (5)</button>
-          <button type="button" class="filter-btn" data-filter="community">Community &amp; Deen (4)</button>
-          <button type="button" class="filter-btn" data-filter="devtools">Compilers &amp; Tools (3)</button>
-          <button type="button" class="filter-btn" data-filter="roadmap">Future Business &amp; R&amp;D (3)</button>
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All (15)</button>
+          <button type="button" class="filter-btn" data-filter="studio" aria-pressed="false">Flagship Studio (5)</button>
+          <button type="button" class="filter-btn" data-filter="community" aria-pressed="false">Community &amp; Deen (4)</button>
+          <button type="button" class="filter-btn" data-filter="devtools" aria-pressed="false">Compilers &amp; Tools (3)</button>
+          <button type="button" class="filter-btn" data-filter="roadmap" aria-pressed="false">Future Business &amp; R&amp;D (3)</button>
         </div>
 
         <!-- Project Cards Grid -->
@@ -318,7 +318,7 @@
               <a class="btn btn--text" href="https://play.google.com/store/apps/details?id=com.alhaq.deenshield" target="_blank" rel="noopener noreferrer">Google Play</a>
               <a class="btn btn--text" href="https://amnishield.com" target="_blank" rel="noopener noreferrer">Portal</a>
               <a class="btn btn--text" href="https://app.amnishield.com" target="_blank" rel="noopener noreferrer">Web Console</a>
-              <a class="btn btn--text" href="https://github.com/habibmukhlis/AmnShield-Android" target="_blank" rel="noopener noreferrer">Repo</a>
+              <a class="btn btn--text" href="https://github.com/alhaq-studio/amnishield-android" target="_blank" rel="noopener noreferrer">Repo</a>
             </div>
           </article>
 
@@ -918,7 +918,7 @@
     </section>
 
     <!-- Support & Sponsorship Section -->
-    <section id="sponsor" class="section">
+    <section id="sponsor" class="section support-band">
       <div class="container">
         <div class="card support-card" data-reveal>
           <h2 data-i18n="sponsor.title">Support Independent Engineering &amp; Research</h2>
@@ -944,12 +944,12 @@
           </div>
 
           <!-- Embedded Ko-fi Panel -->
-          <div style="max-width: 580px; margin: 2rem auto; border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-2); border: 1px solid hsla(var(--outline-variant) / 0.15); background: #ffffff;">
-            <iframe id="kofiframe" src="https://ko-fi.com/alhaq/?hidefeed=true&widget=true&embed=true&preview=true" style="border:none;width:100%;padding:4px;background:#f9f9f9;" height="712" title="Al-Haq Patronage"></iframe>
+          <div class="support-embed">
+            <iframe id="kofiframe" src="https://ko-fi.com/alhaq/?hidefeed=true&widget=true&embed=true&preview=true" height="712" title="Al-Haq Patronage"></iframe>
           </div>
 
           <small class="support-card__note" data-i18n="sponsor.note">
-            Personal community initiative by Habib Mukhlis (Habibur Rahman) (UK sole trader). Not a registered charity or corporate trust.
+            Al-Haq Studio is operated by Habib Mukhlis (Habibur Rahman), a UK sole trader. Al-Haq Initiative is a community and research project, not a registered charity.
           </small>
         </div>
       </div>
@@ -1053,3 +1053,4 @@
 </body>
 
 </html>
+
