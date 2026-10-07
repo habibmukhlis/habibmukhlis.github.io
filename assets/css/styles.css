@@ -331,6 +331,8 @@ h1, h2, h3, h4, .display {
 .support-card__copy { color: hsl(var(--text-2)); line-height: 1.7; margin-bottom: 1.5rem; }
 .support-actions { justify-content: center; gap: .75rem; margin-bottom: 1rem; }
 .support-card__note { display: block; color: hsl(var(--text-2)); font-size: .8rem; }
+.support-embed { max-width: 580px; margin: 2rem auto; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-2); border: 1px solid hsla(var(--outline-variant) / .15); background: #fff; }
+.support-embed iframe { display: block; width: 100%; padding: 4px; border: 0; background: #f9f9f9; }
 
 /* Chips */
 .chips { display: flex; gap: .5rem; flex-wrap: wrap; }
@@ -1106,4 +1108,5 @@ html.dark #alhaq-chatbot-footer {
     right: 0;
   }
 }
+
 
