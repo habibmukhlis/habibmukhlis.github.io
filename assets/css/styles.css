@@ -785,7 +785,7 @@ html[dir="rtl"] .service-bullets li {
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--brand)) 100%);
+  background: #0A2540;
   box-shadow: 0 10px 28px rgba(10, 37, 64, 0.35), 0 2px 6px rgba(15, 23, 42, 0.18);
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 }
@@ -896,7 +896,7 @@ html.dark #alhaq-chatbot-panel {
   align-items: center;
   gap: 12px;
   padding: 14px 18px;
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--brand)));
+  background: linear-gradient(135deg, #0A2540, #17365D);
   color: #ffffff;
 }
 #alhaq-chatbot-header .alhaq-avatar {
@@ -924,7 +924,7 @@ html.dark #alhaq-chatbot-panel {
   height: 10px;
   border-radius: 9999px;
   background: #22c55e;
-  border: 2px solid hsl(var(--primary));
+  border: 2px solid #0A2540;
 }
 #alhaq-chatbot-header .alhaq-meta {
   display: flex;
@@ -998,7 +998,7 @@ html.dark #alhaq-chatbot-body {
   padding: 9px 14px;
   border-top: 1px solid rgba(15, 23, 42, 0.08);
   background: #ffffff;
-  color: #64748b;
+  color: #334155;
   font: 500 11.5px/1.4 var(--font-sans);
   display: flex;
   align-items: center;
