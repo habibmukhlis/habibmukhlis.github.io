@@ -364,6 +364,9 @@ html.dark .chip--initiative { background: rgba(245, 158, 11, 0.15); color: #fbbf
 /* Reveal on scroll */
 [data-reveal] { opacity: 0; transform: translateY(15px); transition: opacity .8s var(--ease-editorial), transform .8s var(--ease-editorial); }
 [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+/* Project visibility must not depend on the parent scroll-reveal observer. */
+.project-grid[data-reveal] { opacity: 1; transform: none; }
+.project[hidden] { display: none !important; }
 
 /* Responsive */
 @media (max-width: 960px) {
