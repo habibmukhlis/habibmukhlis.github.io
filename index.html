@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Habib Mukhlis (Habibur Rahman) · Founder of Al-Haq Studio & Al-Haq Initiative · Systems Architect & Software Engineer" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0A2540" id="theme-color-meta" />
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; img-src 'self' data: https://cdn.buymeacoffee.com https://img.buymeacoffee.com https://ko-fi.com; script-src 'self' https://cdnjs.buymeacoffee.com https://cdn.buymeacoffee.com 'unsafe-inline'; frame-src https://ko-fi.com https://buymeacoffee.com https://alhaq-hf-alhaq-website-chatbot.hf.space; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'; upgrade-insecure-requests" />
@@ -79,53 +80,55 @@
   <main id="main">
     <!-- Hero Section -->
     <section id="home" class="section hero" aria-label="Introduction">
-      <div class="container hero__inner">
-        <div class="hero__content">
-          <p class="eyebrow" data-i18n="hero.hello">Founder &amp; Principal Systems Architect</p>
-          <h1 class="display">Habib Mukhlis <span class="muted" style="font-size: 0.6em; display: block; margin-top: 0.25rem;">(Habibur Rahman)</span></h1>
-          <p class="lead" data-i18n="hero.lead">
-            Lead Architect behind <strong>Al-Haq Studio</strong> and the <strong>Al-Haq Initiative</strong>. Engineering sovereign on-device privacy guardians, photorealistic 3D spatial simulations, compiler toolchains, and community Islamic digital welfare tools.
-          </p>
-          <div class="actions">
-            <a class="btn btn--primary" href="#projects" data-i18n="hero.ctaProjects">Explore Products</a>
-            <a class="btn btn--tonal" href="#services" data-i18n="hero.ctaServices">Client Solutions</a>
-            <a class="btn" href="#contact" data-i18n="hero.ctaContact">Contact Me</a>
-            <a class="btn email-link" href="#" data-i18n="hero.ctaEmail">Direct Email</a>
+      <div class="container">
+        <div class="hero__inner">
+          <div class="hero__content">
+            <p class="eyebrow" data-i18n="hero.hello">Founder &amp; Principal Systems Architect</p>
+            <h1 class="display">Habib Mukhlis <span class="muted">(Habibur Rahman)</span></h1>
+            <p class="lead" data-i18n="hero.lead">
+              Lead Architect behind <strong>Al-Haq Studio</strong> and the <strong>Al-Haq Initiative</strong>. Engineering sovereign on-device privacy guardians, photorealistic 3D spatial simulations, compiler toolchains, and community Islamic digital welfare tools.
+            </p>
+            <div class="actions">
+              <a class="btn btn--primary" href="#projects" data-i18n="hero.ctaProjects">Explore Products</a>
+              <a class="btn btn--tonal" href="#services" data-i18n="hero.ctaServices">Client Solutions</a>
+              <a class="btn" href="#contact" data-i18n="hero.ctaContact">Contact Me</a>
+              <a class="btn email-link" href="#" data-i18n="hero.ctaEmail">Direct Email</a>
+            </div>
+
           </div>
 
-          <!-- KPI Metrics Ticker -->
-          <div class="kpi-bar" data-reveal>
-            <div class="kpi-item">
-              <span class="kpi-number">15+</span>
-              <span class="kpi-label" data-i18n="kpi.projects">Projects &amp; Tools</span>
-            </div>
-            <div class="kpi-item">
-              <span class="kpi-number">100%</span>
-              <span class="kpi-label" data-i18n="kpi.privacy">On-Device Privacy</span>
-            </div>
-            <div class="kpi-item">
-              <span class="kpi-number">3</span>
-              <span class="kpi-label" data-i18n="kpi.platforms">Primary OS Targets</span>
-            </div>
-            <div class="kpi-item">
-              <span class="kpi-number">P-256</span>
-              <span class="kpi-label" data-i18n="kpi.crypto">NIST Cryptography</span>
-            </div>
+          <div class="hero__art">
+            <figure class="hero__frame" data-elevated>
+              <img id="accentSource" src="assets/img/cover-gradient.svg" alt="Abstract gradient graphic representation" />
+            </figure>
           </div>
         </div>
-
-        <div class="hero__art">
-          <figure class="card glass" data-elevated>
-            <img id="accentSource" src="assets/img/cover-gradient.svg" alt="Abstract gradient graphic representation" />
-          </figure>
+      <!-- KPI Metrics Ticker -->
+      <div class="kpi-bar" data-reveal>
+        <div class="kpi-item">
+          <span class="kpi-number">15+</span>
+          <span class="kpi-label" data-i18n="kpi.projects">Projects &amp; Tools</span>
         </div>
+        <div class="kpi-item">
+          <span class="kpi-number">100%</span>
+          <span class="kpi-label" data-i18n="kpi.privacy">On-Device Privacy</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-number">3</span>
+          <span class="kpi-label" data-i18n="kpi.platforms">Primary OS Targets</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-number">P-256</span>
+          <span class="kpi-label" data-i18n="kpi.crypto">NIST Cryptography</span>
+        </div>
+      </div>
       </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
-      <div class="container grid grid-2">
-        <div class="card" data-reveal>
+      <div class="container about-grid">
+        <div class="about__main" data-reveal>
           <h2 data-i18n="section.about.title">About &amp; Core Philosophy</h2>
           <p data-i18n="about.intro">
             I am an independent systems engineer, software architect, and historical researcher. I operate two complementary initiatives designed to advance digital sovereignty, ethical wellness, and open community tools:
@@ -142,8 +145,8 @@
         </div>
         <aside class="card profile" data-reveal>
           <img class="avatar" src="assets/img/avatar.svg" alt="Habib Mukhlis avatar" />
-          <h3 style="margin-bottom: 0.25rem;">Habib Mukhlis</h3>
-          <p class="muted" style="font-size: 0.85rem; margin-bottom: 1.25rem;">UK Sole Trader &bull; Remote Worldwide</p>
+          <h3>Habib Mukhlis</h3>
+          <p class="muted profile__meta">UK Sole Trader &bull; Remote Worldwide</p>
           <ul class="list inline">
             <li><a class="icon-link" href="https://github.com/habibmukhlis" target="_blank" rel="noopener noreferrer"
                 aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
@@ -178,7 +181,7 @@
     <!-- Studio & Community Initiatives Section -->
     <section id="ventures" class="section bg-section-low">
       <div class="container">
-        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+        <div class="section-head">
           <p class="eyebrow" data-i18n="ventures.eyebrow">Two Core Pillars</p>
           <h2 data-i18n="ventures.title">Commercial Studio &amp; Community Mission</h2>
           <p class="lead" data-i18n="ventures.lead">
@@ -207,7 +210,7 @@
             </ul>
             <div class="venture-footer">
               <span class="badge badge--production">Commercial Studio</span>
-              <a href="https://alhaq.uk" target="_blank" rel="noopener noreferrer" class="btn btn--text" style="font-size: 0.75rem;">
+              <a href="https://alhaq.uk" target="_blank" rel="noopener noreferrer" class="btn btn--text">
                 <span>Visit Studio Site</span>
                 <span class="material-symbols-outlined text-sm">open_in_new</span>
               </a>
@@ -234,7 +237,7 @@
             </ul>
             <div class="venture-footer">
               <span class="badge badge--opensource">100% Free Welfare</span>
-              <a href="https://alhaq-initiative.org" target="_blank" rel="noopener noreferrer" class="btn btn--text" style="font-size: 0.75rem;">
+              <a href="https://alhaq-initiative.org" target="_blank" rel="noopener noreferrer" class="btn btn--text">
                 <span>Visit Initiative Site</span>
                 <span class="material-symbols-outlined text-sm">open_in_new</span>
               </a>
@@ -247,7 +250,7 @@
     <!-- Products & Future Portfolios Section -->
     <section id="projects" class="section">
       <div class="container">
-        <div style="text-align: center; max-width: 760px; margin: 0 auto 2rem;">
+        <div class="section-head">
           <p class="eyebrow" data-i18n="projects.eyebrow">Comprehensive Portfolio</p>
           <h2 data-i18n="section.projects.title">Featured Products &amp; Future Ventures</h2>
           <p class="lead" data-i18n="projects.lead">
@@ -604,7 +607,7 @@
               <span class="chip">Active R&amp;D</span>
             </div>
             <div class="actions">
-              <span class="muted" style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Prototype Bench Testing</span>
+              <span class="muted project__status">Prototype Bench Testing</span>
               <a class="btn btn--text" href="https://alhaq.uk/products#sec-roadmap" target="_blank" rel="noopener noreferrer">Studio Roadmap</a>
             </div>
           </article>
@@ -629,7 +632,7 @@
               <span class="chip">On-Device Vision</span>
             </div>
             <div class="actions">
-              <span class="muted" style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Alpha Engine Complete</span>
+              <span class="muted project__status">Alpha Engine Complete</span>
               <a class="btn btn--text" href="https://alhaq.uk/products#sec-roadmap" target="_blank" rel="noopener noreferrer">Studio Roadmap</a>
             </div>
           </article>
@@ -654,7 +657,7 @@
               <span class="chip">NIST P-256</span>
             </div>
             <div class="actions">
-              <span class="muted" style="font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Cross-Platform Sync</span>
+              <span class="muted project__status">Cross-Platform Sync</span>
               <a class="btn btn--text" href="https://alhaq.uk/products#sec-roadmap" target="_blank" rel="noopener noreferrer">Studio Roadmap</a>
             </div>
           </article>
@@ -666,7 +669,7 @@
     <!-- Services & Commercial Solutions (Future Business Portfolios) -->
     <section id="services" class="section bg-section-low">
       <div class="container">
-        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+        <div class="section-head">
           <p class="eyebrow" data-i18n="services.eyebrow">Professional Engagements</p>
           <h2 data-i18n="services.title">Commercial Services &amp; Client Solutions</h2>
           <p class="lead" data-i18n="services.lead">
@@ -754,9 +757,9 @@
           </div>
         </div>
 
-        <div style="text-align: center; margin-top: 3rem;">
+        <div class="cta-row">
           <a class="btn btn--primary" href="#contact" data-i18n="services.ctaConsult">Inquire About An Engagement</a>
-          <a class="btn btn--tonal" href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer" style="margin-inline-start: 1rem;">Hire on Fiverr</a>
+          <a class="btn btn--tonal" href="https://www.fiverr.com/s/Ayg8WjX" target="_blank" rel="noopener noreferrer">Hire on Fiverr</a>
         </div>
       </div>
     </section>
@@ -764,7 +767,7 @@
     <!-- Architecture & Systems Skills Grid -->
     <section id="architecture" class="section">
       <div class="container">
-        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+        <div class="section-head">
           <p class="eyebrow" data-i18n="arch.eyebrow">Technical Mastery</p>
           <h2 data-i18n="arch.title">Systems Architecture &amp; Engineering Stack</h2>
           <p class="lead" data-i18n="arch.lead">
@@ -827,7 +830,7 @@
     <!-- Engineering Experience Timeline -->
     <section id="experience" class="section bg-section-low">
       <div class="container">
-        <div style="text-align: center; max-width: 760px; margin: 0 auto 2.5rem;">
+        <div class="section-head">
           <p class="eyebrow" data-i18n="exp.eyebrow">Engineering Milestones</p>
           <h2 data-i18n="section.experience.title">Engineering Experience &amp; Releases</h2>
           <p class="lead" data-i18n="exp.lead">Key product releases, open-source milestones, and architecture deployments.</p>
@@ -961,9 +964,9 @@
         <div class="card assistant-prompt-card" data-reveal>
           <div class="assistant-prompt-inner">
             <div class="assistant-prompt-text">
-              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
-                <span class="material-symbols-outlined" style="font-size: 28px; color: hsl(var(--brand));">smart_toy</span>
-                <h2 style="margin: 0;" data-i18n="assistant.title">Ask the Al-Haq Assistant</h2>
+              <div class="assistant-prompt-title">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <h2 data-i18n="assistant.title">Ask the Al-Haq Assistant</h2>
               </div>
               <p data-i18n="assistant.desc">
                 The AI assistant answers questions regarding this portfolio, products (AmniGuard, AmniShield, Platen, AmniSpace), Al-Haq Studio services, and the Al-Haq Initiative library.
@@ -971,7 +974,7 @@
             </div>
             <div class="assistant-prompt-action">
               <button type="button" class="btn btn--primary" id="openAssistantPromptBtn">
-                <span class="material-symbols-outlined" style="font-size: 1.15rem; margin-right: 0.35rem;">chat</span>
+                <span class="material-symbols-outlined">chat</span>
                 <span>Open Assistant</span>
               </button>
             </div>
@@ -982,8 +985,8 @@
 
     <!-- Contact & Hire Section -->
     <section id="contact" class="section">
-      <div class="container grid grid-2">
-        <div class="card" data-reveal>
+      <div class="container contact-grid">
+        <div class="card contact__form" data-reveal>
           <h2 data-i18n="section.contact.title">Contact &amp; Inquiries</h2>
           <p data-i18n="contact.p1">
             Have a project, security audit, architecture question, or freelance opportunity? Send a message and I will respond promptly.
@@ -1017,7 +1020,7 @@
           </form>
         </div>
 
-        <aside class="card" data-reveal>
+        <aside class="card contact__info" data-reveal>
           <h3 data-i18n="contact.availability">Availability</h3>
           <p data-i18n="contact.availabilityText">Open to full-time architecture roles, contract engineering, and bespoke freelance builds.</p>
           <h3 data-i18n="contact.location">Location</h3>
